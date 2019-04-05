@@ -1,0 +1,29 @@
+.subjects-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    .subject-field {
+        max-width: 250px;
+        height: 200px;
+        background-color: rgb(230, 100, 50);
+        border-radius: 10%;
+        line-height: 100px;
+        text-align: center;
+        font-size: 2em;
+    }
+}
+.button {
+    margin: 5% auto;
+    width: 80px;
+    height: 80px;
+    background-color: white;
+    border-radius: 50%;
+    button {
+      position: relative;
+      margin: 0 10px;
+      background-color: rgba(114, 75, 75, 0);
+      font-size: 80px;
+      font-weight: bold;
+      border: 0;
+      line-height: 80px;
+    }
+  }
