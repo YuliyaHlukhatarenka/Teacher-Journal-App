@@ -1,0 +1,13 @@
+<div>
+  <p class="form-title">{{formTitle}}</p>
+  <div class="form-container">
+    <div *ngFor="let key of item | toIterable; let i = index" class="form-content">
+      <p>{{fieldsTitle[i]}}</p>
+      <input type="text" [(ngModel)]="item[key]"/>
+    </div>
+    <app-default-field *ngIf="!defaultFieldDefined" [defaultValuesNoSet] = "defaultValuesNoSet"></app-default-field>
+    <div class="form-actions">
+      <button type="submit" (click)="click()" name="Add">Add</button>
+    </div>
+  </div>
+</div>

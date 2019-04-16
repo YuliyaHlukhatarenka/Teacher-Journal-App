@@ -1,20 +1,20 @@
-const uuidv1 = require('uuid/v1');
+//const uuidv1 = require('uuid/v1');
 
-class Subject {
+export class Subject {
     public name: string;
     public teacher: string;
-    public cabiner: string;
+    public cabinet: string;
     public description: string;
+    public marks: object[];
+    public average: object;
 
-    // private id: string = uuidv1();
-
-
-    constructor(name: string, teacher: string, cabiner: string, description: string) {
+    constructor(name: string, teacher: string, cabinet: string, description: string) {
         this.name = name;
         this.teacher = teacher;
-        this.cabiner = cabiner;
+        this.cabinet = cabinet;
         this.description = description;
     }
-}
+  
+    // private id: string = uuidv1();
 
-export default Subject;
+}

@@ -1,8 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient} from '@angular/common/http';
 import JsonFile from '../../../assets/data.json';
-import { isArray } from 'util';
-import { environment } from 'src/environments/environment.js';
 
 
 @Injectable({
@@ -14,7 +12,7 @@ export class DataService {
 
   get(item: string) {
     if ( !localStorage.getItem(item) ) {
-      localStorage.setItem(item, JSON.stringify(JsonFile[item]));
+       localStorage.setItem(item, JSON.stringify(JsonFile[item]));
 
     }
     return JSON.parse(localStorage.getItem(item));
@@ -23,5 +21,10 @@ export class DataService {
   add(element, item) {
     const data = JSON.parse(localStorage.getItem(item));
     localStorage.setItem(item, JSON.stringify(data.concat([element])));
+  }
+
+  delete(element, item) {
+    const data = JSON.parse(localStorage.getItem(item)).filter( el => el.name != element);
+    localStorage.setItem(item, JSON.stringify(data));
   }
 }

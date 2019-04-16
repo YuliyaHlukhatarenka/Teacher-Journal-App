@@ -12,7 +12,12 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { DataService } from './common/services/data.service';
 import { SubjectFormComponent } from './components/subjects/subject-form/subject-form.component';
-
+import { FormTemplateComponent } from './shared/components/forms/form-template/form-template.component';
+import { FormAddItemComponent } from './common/forms/form-add-item/form-add-item.component';
+import { ToIterablePipe } from './common/pipes/to-iterable.pipe';
+import { AlertModule } from 'ngx-bootstrap/alert';
+import { DefaultFieldComponent } from './components/alerts/default-field/default-field.component';
+import { SubjectDetailsComponent } from './components/subjects/subject-details/subject-details.component';
 
 @NgModule({
   declarations: [
@@ -23,12 +28,18 @@ import { SubjectFormComponent } from './components/subjects/subject-form/subject
     ExportComponent,
      StudentFormComponent,
     SubjectFormComponent,
+    FormTemplateComponent,
+    FormAddItemComponent,
+    ToIterablePipe,
+    DefaultFieldComponent,
+    SubjectDetailsComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
+    AlertModule.forRoot(),
   ],
   providers: [DataService],
   bootstrap: [AppComponent]

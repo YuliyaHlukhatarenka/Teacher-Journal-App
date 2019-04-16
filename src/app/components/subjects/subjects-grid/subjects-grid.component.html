@@ -1,9 +1,9 @@
-<p>List of subjects:</p>
+<p class="form-title">List of subjects:</p>
 <div class="subjects-container">
-  <div *ngFor="let subject of subjects" class="subject-field">
-    <p>{{subject.title}}</p>
+  <div *ngFor="let subject of subjects" class="subject-field" (click)="click(subject)">
+    <p>{{subject.name}}</p>
   </div>
 </div>
-<div class="button">
-  <button (click)="openAddNewStudentPage()"> + </button>
+<div class="add-new-button">
+  <button (click)="openAddNewSubjectPage()"> + </button>
 </div>
