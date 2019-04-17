@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Subject } from 'src/app/common/entities/';
-import { DataService } from '../../../common/services/data.service';
+import { DataService } from '../../../common/services/storage-service/data.service';
 import { Router } from '@angular/router';
 
 @Component({
@@ -24,6 +24,5 @@ export class SubjectFormComponent implements OnInit {
    this.dataService.add(this.subject, 'subjects');
    this.router.navigate(['/subjects']);
  }
-
 
 }

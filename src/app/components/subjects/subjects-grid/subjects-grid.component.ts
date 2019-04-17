@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Subject } from '../../../common/entities/';
-import { DataService } from '../../../common/services/data.service';
+import { DataService } from '../../../common/services/storage-service/data.service';
 import { Router } from '@angular/router';
 
 @Component({
