@@ -1,5 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { User } from '../../../common/entities/';
+import { Component, OnInit, Input, Output, EventEmitter, Renderer2 } from '@angular/core';
 
 @Component({
   selector: 'app-form-add-item',
@@ -17,7 +16,7 @@ export class FormAddItemComponent implements OnInit {
 
   values: object = {};
 
-  constructor() {
+  constructor(private renderer: Renderer2) {
   }
 
   ngOnInit() { 
@@ -29,6 +28,8 @@ export class FormAddItemComponent implements OnInit {
     });
     if(this.defaultValuesNoSet) {
       this.defaultFieldDefined = false;
+      let input = document.getElementById(this.defaultValuesNoSet);
+      this.renderer.addClass(input, 'error-input');
     } else {
       this.onClick.emit();
     }

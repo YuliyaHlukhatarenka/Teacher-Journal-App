@@ -1,13 +1,14 @@
 import { Injectable } from '@angular/core';
 import {User} from '../../entities/';
 import {Subject} from '../../entities/';
+import {DecimalPipe} from '@angular/common';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ConvertDataService {
 
-  constructor() { }
+  constructor(private decimalPipe: DecimalPipe) { }
 
   convertToWorkObject( students: User[], subject: Subject): object {
     let marks = {};
@@ -23,7 +24,7 @@ export class ConvertDataService {
     return marks;
   }
 
-  convertFromWorkObject( marks: object, subjectMarks: object[] ) {
+  convertFromWorkObject( marks: object, subjectMarks: object[], newDate ) {
     let newSubjectMarks: object[];
     newSubjectMarks = subjectMarks.map( el => {
       let newItem = {};
@@ -36,10 +37,13 @@ export class ConvertDataService {
          if( el[1] !== "") 
          {
            let index = subjectMarks.findIndex( item => item["date"] === el[0]);
-           newSubjectMarks[index][student] = el[1];
+           newSubjectMarks[index][student] = this.decimalPipe.transform(el[1], '1.0-1');
          }
        });
       }
+      newSubjectMarks.map( el => {
+        el["date"] = newDate[el["date"]];
+      });
       return newSubjectMarks;
   }
 }

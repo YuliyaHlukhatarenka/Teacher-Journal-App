@@ -20,6 +20,7 @@ import { DefaultFieldComponent } from './components/alerts/default-field/default
 import { SubjectDetailsComponent } from './components/subjects/subject-details/subject-details.component';
 import { StoreModule } from '@ngrx/store';
 import { reducers, metaReducers } from './reducers';
+import { DecimalPipe } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -44,7 +45,10 @@ import { reducers, metaReducers } from './reducers';
     AlertModule.forRoot(),
     StoreModule.forRoot(reducers, { metaReducers }),
   ],
-  providers: [DataService],
+  providers: [
+    DataService,
+    DecimalPipe
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -11,14 +11,17 @@ import { Router } from '@angular/router';
 export class SubjectFormComponent implements OnInit {
   subject = new Subject('', '', '', '');
   formTitle: string = "Add new subject:";
-  fieldsTitle: string[] = ["* Name", "* Teacher", "Cabinet", "Description"] ;
+  fieldsTitle: string[] = ["* Name", "* Teacher", "Cabinet", "Description"];
   requiredFields: string[] = ["name", "teacher"];
 
   constructor(private dataService: DataService, private router: Router) {
   }
 
  ngOnInit() {
+  Object.defineProperty(this.subject, "marks", {enumerable: false});
+  Object.defineProperty(this.subject, "average", {enumerable: false});
  }
+ 
 
  public AddNewSubject() {
    this.dataService.add(this.subject, 'subjects');
