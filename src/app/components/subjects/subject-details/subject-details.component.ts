@@ -32,8 +32,8 @@ export class SubjectDetailsComponent implements OnInit {
 
   ngOnInit() {
     this.title = this.route.snapshot.params.title;
-    this.students = this.dataService.get('students');
-    this.subject = this.dataService.get('subjects').find( el => el.name === this.title);
+    this.students = this.dataService.getDataFromLocalStorage('students');
+    this.subject = this.dataService.getDataFromLocalStorage('subjects').find( el => el.name === this.title);
     this.marks = this.convertDataService.convertToWorkObject(this.students, this.subject);
     this.newDate = {};
     this.subject.marks.map( el => this.newDate[el["date"]] = el["date"] );
@@ -54,8 +54,8 @@ export class SubjectDetailsComponent implements OnInit {
     }
     this.subject.marks =  this.convertDataService.convertFromWorkObject(this.marks, this.subject.marks, this.newDate);
     this.subject.average = this.average;
-    this.dataService.delete(this.title, 'subjects');
-    this.dataService.add(this.subject, 'subjects');
+    this.dataService.deleteDataFromLocalStorage(this.title, 'subjects');
+    this.dataService.addDataToLocalStorage(this.subject, 'subjects');
     this.router.navigate(['/subjects']);
   }
 

@@ -14,7 +14,7 @@ export class SubjectsGridComponent implements OnInit {
   constructor(private router: Router, private dataService: DataService) {}
 
   ngOnInit() {
-    this.subjects = this.dataService.get('subjects');
+    this.subjects = this.dataService.getDataFromLocalStorage('subjects');
   }
 
 

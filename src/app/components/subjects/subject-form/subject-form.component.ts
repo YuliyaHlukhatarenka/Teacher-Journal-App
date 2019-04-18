@@ -24,7 +24,7 @@ export class SubjectFormComponent implements OnInit {
  
 
  public AddNewSubject() {
-   this.dataService.add(this.subject, 'subjects');
+   this.dataService.addDataToLocalStorage(this.subject, 'subjects');
    this.router.navigate(['/subjects']);
  }
 
