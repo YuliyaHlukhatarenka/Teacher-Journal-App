@@ -1,0 +1,21 @@
+<div class="container">
+  <table>
+    <tr>
+      <th>Id</th>
+      <th>Firstname</th>
+      <th>Lastname</th> 
+      <th>Address</th>
+      <th>Comment</th>
+    </tr>
+    <tr *ngFor="let student of students">
+        <td>..</td>
+        <td>{{student.firstName}}</td> 
+        <td>{{student.lastName}}</td>
+        <td>{{student.address}}</td>
+        <td><a href="">...</a></td>
+    </tr>
+  </table>
+  <div class="button">
+    <button (click)="openAddNewStudentPage()"> + </button>
+  </div>
+</div>

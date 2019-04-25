@@ -1,0 +1,97 @@
+{
+    "students": [
+      {
+        "_id": "5ca611e7956d5c92c0304bc7",
+        "firstName": "Mccray",
+        "lastName": "Henderson",
+        "address": "690 Roder Avenue, Clay, Arizona, 6091",
+        "description": "Description for student Mccray"
+      },
+      {
+        "_id": "5ca611e7c58c62473d437a23",
+        "firstName": "Elaine",
+        "lastName": "Coleman",
+        "address": "596 Polhemus Place, Bangor, Rhode Island, 8102",
+        "description": "Description for student Elaine"
+      },
+      {
+        "_id": "5ca611e747b3ac0ee297e404",
+        "firstName": "Clemons",
+        "lastName": "Pickett",
+        "address": "500 Graham Avenue, Urie, Palau, 4957",
+        "description": "Description for student Clemons"
+      },
+      {
+        "_id": "5ca611e7648676ed2b749d71",
+        "firstName": "Shanna",
+        "lastName": "Gordon",
+        "address": "169 Fountain Avenue, Faxon, Minnesota, 2234",
+        "description": "Description for student Shanna"
+      },
+      {
+        "_id": "5ca611e7a41ef691421b0122",
+        "firstName": "Nolan",
+        "lastName": "Conway",
+        "address": "479 Lawton Street, Edgewater, Indiana, 1957",
+        "description": "Description for student Nolan"
+      },
+      {
+        "_id": "5ca611e77d62aead61db844b",
+        "firstName": "Eve",
+        "lastName": "Knapp",
+        "address": "821 Bassett Avenue, Morningside, Montana, 7666",
+        "description": "Description for student Eve"
+      },
+      {
+        "_id": "5ca611e787e1523ea7690d25",
+        "firstName": "Valeria",
+        "lastName": "Sherman",
+        "address": "419 Fayette Street, Fairacres, Missouri, 1125",
+        "description": "Description for student Valeria"
+      },
+      {
+        "_id": "5ca611e748a93f0296a33b3c",
+        "firstName": "Gamble",
+        "lastName": "Weber",
+        "address": "216 Diamond Street, Rodman, Oklahoma, 9263",
+        "description": "Description for student Gamble"
+      },
+      {
+        "_id": "5ca611e717c256f23ce68d1e",
+        "firstName": "Lakeisha",
+        "lastName": "Cooper",
+        "address": "167 Lorimer Street, Alleghenyville, New Hampshire, 5739",
+        "description": "Description for student Lakeisha"
+      },
+      {
+        "_id": "5ca611e73da50b4d4e094782",
+        "firstName": "Hudson",
+        "lastName": "Griffith",
+        "address": "573 Lake Street, Finzel, Hawaii, 3796",
+        "description": "Description for student Hudson"
+      }
+    ],
+    "friends": [
+      {
+        "id": 0,
+        "name": "Physics",
+        "teacher": "Maria Hayes",
+        "cabiner": 7,
+        "description": "Description for subject Physics"
+      },
+      {
+        "id": 1,
+        "name": "Chemistry",
+        "teacher": "Blackburn Walls",
+        "cabiner": 75,
+        "description": "Description for subject Chemistry"
+      },
+      {
+        "id": 2,
+        "name": "Literature",
+        "teacher": "Kennedy Fernandez",
+        "cabiner": 13,
+        "description": "Description for subject Literature"
+      }
+    ]
+  }
