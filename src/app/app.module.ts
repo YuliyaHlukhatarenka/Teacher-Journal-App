@@ -14,13 +14,18 @@ import { DataService } from './common/services/storage-service/data.service';
 import { SubjectFormComponent } from './components/subjects/subject-form/subject-form.component';
 import { FormTemplateComponent } from './shared/components/forms/form-template/form-template.component';
 import { FormAddItemComponent } from './common/forms/form-add-item/form-add-item.component';
-import { ToIterablePipe } from './common/pipes/to-iterable.pipe';
 import { AlertModule } from 'ngx-bootstrap/alert';
 import { DefaultFieldComponent } from './components/alerts/default-field/default-field.component';
 import { SubjectDetailsComponent } from './components/subjects/subject-details/subject-details.component';
 import { StoreModule } from '@ngrx/store';
 import { reducers, metaReducers } from './reducers';
 import { DecimalPipe } from '@angular/common';
+import { environment } from '../environments/environment';
+export const firebase = environment.firebase;
+
+import { AngularFireModule } from '@angular/fire';
+import { AngularFirestoreModule, FirestoreSettingsToken } from '@angular/fire/firestore';
+import { ToIterableByKeyPipe } from './common/pipes/to-iterable-by-key/to-iterable-by-key.pipe';
 
 @NgModule({
   declarations: [
@@ -29,13 +34,13 @@ import { DecimalPipe } from '@angular/common';
     SubjectsGridComponent,
     StatisticsComponent,
     ExportComponent,
-     StudentFormComponent,
+    StudentFormComponent,
     SubjectFormComponent,
     FormTemplateComponent,
     FormAddItemComponent,
-    ToIterablePipe,
     DefaultFieldComponent,
     SubjectDetailsComponent,
+    ToIterableByKeyPipe,
   ],
   imports: [
     BrowserModule,
@@ -44,10 +49,13 @@ import { DecimalPipe } from '@angular/common';
     HttpClientModule,
     AlertModule.forRoot(),
     StoreModule.forRoot(reducers, { metaReducers }),
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFirestoreModule,
   ],
   providers: [
     DataService,
-    DecimalPipe
+    DecimalPipe,
+    { provide: FirestoreSettingsToken, useValue: {} }
   ],
   bootstrap: [AppComponent]
 })

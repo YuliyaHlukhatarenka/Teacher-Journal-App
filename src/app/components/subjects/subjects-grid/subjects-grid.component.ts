@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { Subject } from '../../../common/entities/';
 import { DataService } from '../../../common/services/storage-service/data.service';
 import { Router } from '@angular/router';
+import { debounceTime } from 'rxjs/operators';
+import { ActivatedRoute } from '@angular/router';
+
 
 @Component({
   selector: 'app-subjects-grid',
@@ -9,22 +11,24 @@ import { Router } from '@angular/router';
   styleUrls: ['./subjects-grid.component.scss']
 })
 export class SubjectsGridComponent implements OnInit {
-  subjects: Subject[];
+  subjects: {};
 
-  constructor(private router: Router, private dataService: DataService) {}
+  constructor(private router: Router, private dataService: DataService, private route: ActivatedRoute) { }
 
   ngOnInit() {
-    this.subjects = this.dataService.getDataFromLocalStorage('subjects');
+    this.route.params.pipe(debounceTime(300)).subscribe(() => {
+      this.dataService.getSubjectsFromStorage('subjects').subscribe((res) => {
+        this.subjects = res;
+      });
+    })
   }
-
 
   public openAddNewSubjectPage(): void {
     this.router.navigate(['/subjects/new-subject']);
-
   }
 
   public click(subject) {
-    this.router.navigate(['/subjects/'+ subject.name]);
+    this.router.navigate(['/subjects/' + subject.name]);
 
   }
 }

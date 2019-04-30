@@ -7,12 +7,12 @@
       <th>Address</th>
       <th>Comment</th>
     </tr>
-    <tr *ngFor="let student of students">
-        <td>..</td>
+    <tr *ngFor="let student of students; let i = index">
+        <td>{{i+1}}</td>
         <td>{{student.firstName}}</td> 
         <td>{{student.lastName}}</td>
         <td>{{student.address}}</td>
-        <td><a href="">...</a></td>
+        <td></td>
     </tr>
   </table>
   <div class="add-new-button">

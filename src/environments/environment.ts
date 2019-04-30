@@ -2,9 +2,18 @@
 // `ng build --prod` replaces `environment.ts` with `environment.prod.ts`.
 // The list of file replacements can be found in `angular.json`.
 
+// tslint:disable-next-line:typedef
 export const environment = {
   production: false,
-  apiUrl: 'http://127.0.0.1:5500/data'
+  firebase: {
+    apiKey: "AIzaSyBAIjgJqkK2D9wtta6qpCTiSgD3xKODGUU",
+    authDomain: "teacher-journal-app.firebaseapp.com",
+    databaseURL: "https://teacher-journal-app.firebaseio.com",
+    projectId: "teacher-journal-app",
+    storageBucket: "teacher-journal-app.appspot.com",
+    messagingSenderId: "763115802342"
+  },
+  webApi: "https://us-central1-teacher-journal-app.cloudfunctions.net/webApi/"
 };
 
 /*
