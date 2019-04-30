@@ -19,7 +19,7 @@
       <td>{{student.lastName}}</td>
       <td>{{average[student.firstName+' '+student.lastName]}}</td>
       <td *ngFor="let item of subject.marks; let i = index">
-        <input type="text" [(ngModel)]="marks[student.firstName+' '+student.lastName][item.date]"> </td>
+        <input type="text" *ngIf="marks[item.date]" [(ngModel)]="marks[item.date][student.firstName+' '+student.lastName]"> </td>
     </tr>
   </table>
   <div class="edit-teacher-section">
@@ -30,3 +30,4 @@
     <button type="submit" name="Save" (click)="onSave()">Save</button>
   </div>
 </div>
+<app-default-field *ngIf="!allDateDefined" [defaultValuesNoSet] = "defaultValuesNoSet"></app-default-field>

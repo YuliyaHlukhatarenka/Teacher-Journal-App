@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Subject } from 'src/app/common/entities/';
 import { DataService } from '../../../common/services/storage-service/data.service';
 import { Router } from '@angular/router';
+import { throwError, of } from 'rxjs';
+import { catchError } from 'rxjs/operators';
 
 @Component({
   selector: 'app-new-subject',
@@ -17,15 +19,14 @@ export class SubjectFormComponent implements OnInit {
   constructor(private dataService: DataService, private router: Router) {
   }
 
- ngOnInit() {
-  Object.defineProperty(this.subject, "marks", {enumerable: false});
-  Object.defineProperty(this.subject, "average", {enumerable: false});
- }
- 
+  ngOnInit() { }
 
- public AddNewSubject() {
-   this.dataService.addDataToLocalStorage(this.subject, 'subjects');
-   this.router.navigate(['/subjects']);
- }
+  public AddNewSubject() {
+    this.dataService.addSubjectToStorage(this.subject).pipe(catchError(err => {
+      throwError(err);
+      return of('safety result');
+    })).subscribe();
+    this.router.navigate(['/subjects']);
+  }
 
 }

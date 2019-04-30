@@ -1,9 +1,9 @@
 import { Pipe, PipeTransform } from '@angular/core';
 
 @Pipe({
-  name: 'toIterable'
+  name: 'toIterableByKey'
 })
-export class ToIterablePipe implements PipeTransform {
+export class ToIterableByKeyPipe implements PipeTransform {
 
   transform(value: any, args?: any): any {
     let values= [];
@@ -14,3 +14,4 @@ export class ToIterablePipe implements PipeTransform {
   }
 
 }
+
