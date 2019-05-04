@@ -1,26 +1,23 @@
 import { Component, OnInit } from '@angular/core';
-import { DataService } from '../../../common/services/storage-service/data.service';
 import { Router } from '@angular/router';
-import { debounceTime } from 'rxjs/operators';
-import { ActivatedRoute } from '@angular/router';
-
-
+import { Store, select } from '@ngrx/store';
+import { AppState } from '../../../store/state/jornal.state';
+import { Observable } from 'rxjs';
 @Component({
   selector: 'app-subjects-grid',
   templateUrl: './subjects-grid.component.html',
   styleUrls: ['./subjects-grid.component.scss']
 })
 export class SubjectsGridComponent implements OnInit {
-  subjects: {};
+  state$: Observable<any>;
 
-  constructor(private router: Router, private dataService: DataService, private route: ActivatedRoute) { }
+  constructor(
+    private router: Router, 
+    private store: Store<AppState>
+    ) { }
 
   ngOnInit() {
-    this.route.params.pipe(debounceTime(300)).subscribe(() => {
-      this.dataService.getSubjectsFromStorage('subjects').subscribe((res) => {
-        this.subjects = res;
-      });
-    })
+    this.state$ = this.store.pipe(select('state'));
   }
 
   public openAddNewSubjectPage(): void {

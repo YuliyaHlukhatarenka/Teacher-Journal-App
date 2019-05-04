@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { DataService } from '../../../common/services/storage-service/data.service';
+import { DataService } from '../../../common/services/db-service/data.service';
 import { User } from '../../../common/entities/';
 import { Router } from '@angular/router';
-import { catchError } from 'rxjs/operators';
-import { throwError, of } from 'rxjs';
+import { StoreService } from '../../../common/services/store-service/store.service';
 @Component({
   selector: 'app-student-form',
   templateUrl: './student-form.component.html',
@@ -15,7 +14,10 @@ export class StudentFormComponent implements OnInit {
   public fieldsTitle: string[] = ["* Name", "* Last Name", "Address", "Description"];
   public requiredFields: string[] = ["firstName", "lastName"];
 
-  constructor(private dataService: DataService, private router: Router) {
+  constructor(
+    private dataService: DataService,
+    private storeService: StoreService,
+    private router: Router) {
   }
 
   ngOnInit() {
@@ -23,10 +25,7 @@ export class StudentFormComponent implements OnInit {
   }
 
   public AddNewStudent(): void {
-    this.dataService.addStudentToStorage(this.student).pipe(catchError(err => {
-      throwError(err);
-      return of('ok');
-    })).subscribe();
+    this.storeService.addStudentToStore(this.student);
     this.router.navigate(['/students']);
   }
 

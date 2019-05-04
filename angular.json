@@ -8,11 +8,15 @@
       "sourceRoot": "src",
       "projectType": "application",
       "prefix": "app",
+      
       "schematics": {
         "@schematics/angular:component": {
           "style": "scss"
         }
       },
+      "cli": {
+        "defaultCollection": "@ngrx/schematics"
+        },
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
