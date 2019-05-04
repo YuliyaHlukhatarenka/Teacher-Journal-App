@@ -70,7 +70,6 @@ app.post("/subjects", (req, res) => {
 
 app.post("/subjects", (req, res) => {
     const subject = req.body;
-    console.log('add');
     admin
         .firestore()
         .collection("subjects")
@@ -82,7 +81,6 @@ app.post("/subjects", (req, res) => {
 
 app.delete("/subjects", (req, res) => {
     const id = req.query.id;
-    console.log(id);
     admin
         .firestore()
         .collection("subjects")
@@ -92,23 +90,3 @@ app.delete("/subjects", (req, res) => {
         .catch(err =>res.send(err));
 });
 
-
-// // Delete a contact 
-// app.delete('/contacts/:contactId', (req, res) => {
-//     firebaseHelper.firestore
-//         .deleteDocument(db, studentsCollection, req.params.contactId);
-//     res.send('Document deleted');
-// })
-
-// // Update new contact
-// app.patch('/contacts/:contactId', (req, res) => {
-//     firebaseHelper.firestore
-//         .updateDocument(db, studentsCollection, req.params.contactId, req.body);
-//     res.send('Update a new contact');
-// })
-// // View a contact
-// app.get('/contacts/:contactId', (req, res) => {
-//     firebaseHelper.firestore
-//         .getDocument(db, studentsCollection, req.params.contactId)
-//         .then((doc: any) => res.status(200).send(doc));
-// })

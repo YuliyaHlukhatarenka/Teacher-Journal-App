@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore, AngularFirestoreCollection } from 'angularfire2/firestore';
-import { User } from '../../entities/';
+import { User } from '../../entities';
 import { HttpClient, HttpHeaders} from '@angular/common/http';
 import { Observable} from 'rxjs';
 import { environment } from '../../../../environments/environment';
@@ -23,12 +23,12 @@ export class DataService {
   
   constructor(private afs: AngularFirestore, private http: HttpClient) {}
 
-  getStudentsFromStorage(item: string): Observable<User[]> {
-    return this.http.get<User[]>( environment.webApi + item);
+  getStudentsFromStorage(): Observable<User[]> {
+    return this.http.get<User[]>( environment.webApi + 'students');
   }
 
-  getSubjectsFromStorage(item: string): Observable<Subject[]> {
-    return this.http.get<Subject[]>( environment.webApi + item);
+  getSubjectsFromStorage(): Observable<Subject[]> {
+    return this.http.get<Subject[]>( environment.webApi + 'subjects');
   }
 
   addStudentToStorage(element): Observable<object>{
@@ -38,7 +38,7 @@ export class DataService {
 
   addSubjectToStorage(element): Observable<object>{
     element._id = uuidv1();
-     return this.http.post<object>( environment.webApi + 'subjects', JSON.stringify(element), httpOptions);
+     return this.http.post<object>( environment.webApi + 'subjects', element, httpOptions);
    }
 
   deleteSubjectFromLocalStorage(id): Observable<object> {

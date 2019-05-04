@@ -7,7 +7,7 @@
       <th>Address</th>
       <th>Comment</th>
     </tr>
-    <tr *ngFor="let student of students; let i = index">
+    <tr *ngFor="let student of ( state$ | async ).students; let i = index">
         <td>{{i+1}}</td>
         <td>{{student.firstName}}</td> 
         <td>{{student.lastName}}</td>

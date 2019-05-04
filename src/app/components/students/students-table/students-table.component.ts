@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { User } from '../../../common/entities/';
-import { DataService } from '../../../common/services/storage-service/data.service';
-import { debounceTime } from 'rxjs/operators';
-import { ActivatedRoute } from '@angular/router';
+import { Store, select } from '@ngrx/store';
+import { AppState } from '../../../store/state/jornal.state';
+import * as StoreActions from '../../../store/actions';
+import { Observable } from 'rxjs';
+
 
 @Component({
   selector: 'app-students-table',
@@ -11,16 +13,12 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./students-table.component.scss']
 })
 export class StudentsComponent implements OnInit {
-  public students: User[];
+  public state$: Observable<any>;
 
-  constructor(private router: Router, private dataService: DataService, private route: ActivatedRoute) { }
+  constructor(private router: Router, private store: Store<AppState>) { }
 
   ngOnInit() {
-    this.route.params.pipe(debounceTime(200)).subscribe(() => {
-      this.dataService.getStudentsFromStorage('students').subscribe((res) => {
-        this.students = res;
-      });
-    })
+    this.state$ = this.store.pipe(select('state'));
   }
 
   public openAddNewStudentPage(): void {

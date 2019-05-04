@@ -1,6 +1,6 @@
 <p class="form-title">List of subjects:</p>
 <div class="subjects-container">
-  <div *ngFor="let subject of subjects" class="subject-field" (click)="click(subject)">
+  <div *ngFor="let subject of ( state$ | async ).subjects " class="subject-field" (click)="click(subject)">
     <p>{{subject.name}}</p>
   </div>
 </div>

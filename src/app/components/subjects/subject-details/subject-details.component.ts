@@ -1,12 +1,13 @@
 import { Component, OnInit, Renderer2 } from '@angular/core';
-import { DataService } from '../../../common/services/storage-service/data.service';
+import { DataService } from '../../../common/services/db-service/data.service';
 import { Subject, Mark, User } from '../../../common/entities/';
 import { ActivatedRoute } from '@angular/router';
 import { Router } from '@angular/router';
 import { ConvertDataService } from '../../../common/services/convert-data/convert-data.service';
 import { CalculateAverageService } from '../../../common/services/calculate/calculate-average.service';
-import { catchError } from 'rxjs/operators';
-import { throwError, of } from 'rxjs';
+import { Store, select } from '@ngrx/store';
+import { StoreService } from '../../../common/services/store-service/store.service';
+import { AppState } from '../../../store/state/jornal.state';
 
 @Component({
   selector: 'app-subject-details',
@@ -26,11 +27,12 @@ export class SubjectDetailsComponent implements OnInit {
   defaultValuesNoSet: string = "new date column";
 
   constructor(
-    private dataService: DataService,
     private convertDataService: ConvertDataService,
     private calculateAverage: CalculateAverageService,
     private route: ActivatedRoute,
     private router: Router,
+    private store: Store<AppState>,
+    private storeService: StoreService,
     private renderer: Renderer2) {
     this.subject = new Subject('', '', '', '');
     this.students = [];
@@ -40,21 +42,15 @@ export class SubjectDetailsComponent implements OnInit {
   }
 
   ngOnInit() {
+    console.log(this.subject);
     this.title = this.route.snapshot.params.title;
-    this.dataService.getStudentsFromStorage('students').subscribe(res => {
-      this.students = res;
-    });
-
-    this.dataService.getSubjectsFromStorage('subjects').subscribe(res => {
-      this.subject = res.find(el => el.name === this.title)
-    });
-  
-      setTimeout(() => {       
+    this.store.pipe(select('state')).subscribe(res => { 
+      this.students = res.students;
+      this.subject = res.subjects.find(el => el.name === this.title);
+    })  
         this.marks = this.convertDataService.convertToWorkObject(this.students, this.subject.marks);
         this.subject.marks.map(el => this.newDate[el.date] = el.date);
         this.average = this.subject.average;
-      }, 1000);
-  
   }
 
   public openAddNewColumnDate() {
@@ -75,14 +71,7 @@ export class SubjectDetailsComponent implements OnInit {
     }
     this.subject.marks= this.convertDataService.convertFromWorkObject(this.marks, this.subject.marks, this.newDate);
     this.subject['average'] = this.average;
-    this.dataService.deleteSubjectFromLocalStorage(this.subject._id).pipe(catchError(err => {
-      throwError(err);
-      return of('safety result');
-    })).subscribe();;
-    this.dataService.addSubjectToStorage(this.subject).pipe(catchError(err => {
-      throwError(err);
-      return of('safety result');
-    })).subscribe();;
+    this.storeService.updateSubjectInStore(this.subject);
     this.router.navigate(['/subjects']);
   }
 
