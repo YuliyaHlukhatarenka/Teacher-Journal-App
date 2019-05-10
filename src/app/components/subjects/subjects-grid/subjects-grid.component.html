@@ -1,7 +1,7 @@
-<p class="form-title">List of subjects:</p>
+<p class="form-title">{{ 'List of subjects:' | translate }}</p>
 <div class="subjects-container">
   <div *ngFor="let subject of ( state$ | async ).subjects " class="subject-field" (click)="click(subject)">
-    <p>{{subject.name}}</p>
+    <p>{{subject.name | translate}}</p>
   </div>
 </div>
 <div class="add-new-button">

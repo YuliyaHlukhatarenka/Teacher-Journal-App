@@ -1,6 +1,15 @@
 .main-container {
     max-width: 700px;
     margin: 0 auto;
+    header {
+        display: grid;
+        grid-template-columns: 85% 15%;
+        align-items: center;
+        button {
+            background-color: black;
+            color: white;
+        }
+    }
      nav {
         display: grid;
         grid-template-columns: repeat(4, 1fr);   

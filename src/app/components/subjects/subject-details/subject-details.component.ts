@@ -42,7 +42,6 @@ export class SubjectDetailsComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log(this.subject);
     this.title = this.route.snapshot.params.title;
     this.store.pipe(select('state')).subscribe(res => { 
       this.students = res.students;

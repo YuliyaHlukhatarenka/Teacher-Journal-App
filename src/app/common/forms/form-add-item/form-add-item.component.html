@@ -1,12 +1,12 @@
 <div>
-  <p class="form-title">{{formTitle}}</p>
+  <p class="form-title">{{formTitle | translate}}</p>
   <div class="form-container">
     <div *ngFor="let key of item | toIterableByKey; let i = index" class="form-content">
-      <p *ngIf="fieldsTitle[i]">{{fieldsTitle[i]}}</p>
+      <p *ngIf="fieldsTitle[i]">{{fieldsTitle[i] | translate}}</p>
       <input *ngIf="fieldsTitle[i]" type="text" [id]="key" [(ngModel)]="item[key]"/>
     </div>
     <div class="form-actions">
-      <button type="submit" (click)="onClickAdd()" name="Add">Add</button>
+      <button type="submit" (click)="onClickAdd()" name="Add">{{ 'buttons.add' | translate }}</button>
     </div>
   </div>
   <app-default-field *ngIf="!defaultFieldDefined" [defaultValuesNoSet] = "defaultValuesNoSet"></app-default-field>

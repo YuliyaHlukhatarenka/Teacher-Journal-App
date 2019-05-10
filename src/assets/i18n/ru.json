@@ -1,0 +1,43 @@
+{   "title": "Учительский Журнал",
+    "nav": {
+        "students": "Студенты",
+        "subjects": "Предметы", 
+        "statistics": "Стиатистика",
+        "export": "Экспорт"
+    },
+    "student": {
+        "id": "#",
+        "firstname": "имя",
+        "lastname": "фамилия",
+        "address": "адрес",
+        "comment": "замечание" , 
+        "average_mark": "средняя оценка"   
+    },
+
+    "* First Name": "* Имя", 
+    "* Last Name": "* Фамилия",
+    "Address": "Адрес",
+    "Comment": "Замечание",
+    "Add new student:": "Добавить нового студента",
+
+    "* Name": "* Назваине", 
+    "* Teacher": "* Учитель",
+    "Cabinet": "Кабинет",
+    "Description": "Замечание",
+    "Add new subject:": "Добавить новый предмет",
+
+    "buttons": {
+        "add": "Добавить",
+        "save": "Сохранить"
+    },
+
+    "List of subjects:": "Список предметов:",
+    "Teacher:": "Учитель",
+    "Literature": "Литература",
+    "Physics": "Физика",
+    "Biology": "Биология",
+    "Math": "Математика",
+    "Programming": "Программирование"
+
+
+}

@@ -1,11 +1,11 @@
 <div class="container">
   <table>
     <tr>
-      <th>Id</th>
-      <th>Firstname</th>
-      <th>Lastname</th> 
-      <th>Address</th>
-      <th>Comment</th>
+      <th>{{ 'student.id' |  translate}}</th>
+      <th>{{ 'student.firstname' |  translate}}</th>
+      <th>{{ 'student.lastname' |  translate}}</th> 
+      <th>{{ 'student.address' |  translate}}</th>
+      <th>{{ 'student.comment' |  translate}}</th>
     </tr>
     <tr *ngFor="let student of ( state$ | async ).students; let i = index">
         <td>{{i+1}}</td>

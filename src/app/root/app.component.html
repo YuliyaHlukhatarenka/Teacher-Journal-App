@@ -1,11 +1,17 @@
 <div>
   <div class="main-container">
-    <h1><b>{{title}}</b></h1>
+    <header>
+      <h1><b>{{ 'title' | translate }}</b></h1>
+      <div>
+        <button (click)="useLanguage('en')">en</button>
+        <button (click)="useLanguage('ru')">ru</button>
+      </div>
+    </header>
     <nav>
-      <div class="nav-button"><a routerLink="/students" routerLinkActive="active">Students</a></div>
-      <div class="nav-button"><a routerLink="/subjects" routerLinkActive="active">Subjects</a></div>
-      <div class="nav-button"><a routerLink="/statistics" routerLinkActive="active">Statistics</a></div>
-      <div class="nav-button"><a routerLink="/export" routerLinkActive="active">Export</a></div>
+      <div class="nav-button"><a routerLink="/students" routerLinkActive="active">{{ 'nav.students' | translate }}</a></div>
+      <div class="nav-button"><a routerLink="/subjects" routerLinkActive="active">{{ 'nav.subjects' | translate }}</a></div>
+      <div class="nav-button"><a routerLink="/statistics" routerLinkActive="active">{{ 'nav.statistics' | translate }}</a></div>
+      <div class="nav-button"><a routerLink="/export" routerLinkActive="active">{{ 'nav.export' | translate }}</a></div>
     </nav>
     <router-outlet></router-outlet>
   </div>
