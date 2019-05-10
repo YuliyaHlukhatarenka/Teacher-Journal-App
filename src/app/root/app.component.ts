@@ -1,14 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-
-
-import { Router } from '@angular/router';
 import { User, Subject } from '../common/entities/';
-import { DataService } from '../common/services/db-service/data.service';
-import { ActivatedRoute } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { AppState } from '../store/state/jornal.state';
 import * as StoreActions from '../store/actions';
-import { forkJoin } from 'rxjs'
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-root',
@@ -23,17 +18,22 @@ export class AppComponent implements OnInit {
   }
 
   constructor(
-    private dataService: DataService,
-    private store: Store<AppState>
-  ) {
-    this.result = {
-      students: [],
-      subjects: []
-    }
+    private store: Store<AppState>,
+    private translate: TranslateService) {
+      this.result = {
+        students: [],
+        subjects: []
+      }
+      translate.setDefaultLang('en');
+
   }
 
   ngOnInit() {
-    this.store.dispatch( new StoreActions.GetStudents());
-    this.store.dispatch( new StoreActions.GetSubjects());
+    this.store.dispatch(new StoreActions.GetStudents());
+    this.store.dispatch(new StoreActions.GetSubjects());
   }
+
+  useLanguage(language: string) {
+    this.translate.use(language);
+}
 }

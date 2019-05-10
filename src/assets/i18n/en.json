@@ -1,0 +1,21 @@
+{   "title": "Teacher journal",
+    "nav": {
+        "students": "Students",
+        "subjects": "Subjects",
+        "statistics": "Statistics",
+        "export": "Export"
+    },
+    "student": {
+        "id": "id",
+        "firstname": "first name",
+        "lastname": "last name",
+        "address": "address",
+        "comment": "comment" ,
+        "average_mark": "average mark"      
+    },
+
+    "buttons": {
+        "add": "Add",
+        "save": "Save"
+    }
+}

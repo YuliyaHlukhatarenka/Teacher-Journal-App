@@ -11,7 +11,7 @@ import { StoreService } from '../../../common/services/store-service/store.servi
 export class StudentFormComponent implements OnInit {
   public student: User;
   public formTitle: string = "Add new student:";
-  public fieldsTitle: string[] = ["* Name", "* Last Name", "Address", "Description"];
+  public fieldsTitle: string[] = ["* First Name", "* Last Name", "Address", "Comment"];
   public requiredFields: string[] = ["firstName", "lastName"];
 
   constructor(

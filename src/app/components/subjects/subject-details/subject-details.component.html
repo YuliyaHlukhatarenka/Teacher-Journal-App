@@ -1,13 +1,13 @@
 <div class="container">
-  <p class="form-title">{{title}}</p>
+  <p class="form-title">{{title | translate}}</p>
   <div class="add-new-date-button">
     <button (click)="openAddNewColumnDate()"> + </button>
   </div>
   <table>
     <tr>
-      <th>Name</th>
-      <th>Last Name</th>
-      <th>Average Mark</th>
+      <th>{{ 'student.firstname' | translate }}</th>
+      <th>{{ 'student.lastname' | translate }}</th>
+      <th>{{ 'student.average_mark' | translate }}</th>
       <th *ngFor="let item of subject.marks; let i = index">
         <input type="text" [value]="item.date" [(ngModel)]="newDate[item.date]"
           (blur)="onBlur($event)" (focusin)="onFocusInDateTitle($event)">
@@ -23,11 +23,11 @@
     </tr>
   </table>
   <div class="edit-teacher-section">
-    <p>Teacher:</p>
+    <p>{{ 'Teacher:' | translate }}</p>
     <input class="edit-teacher-input" type="text" [(ngModel)]="subject.teacher">
   </div>
   <div class="form-actions">
-    <button type="submit" name="Save" (click)="onSave()">Save</button>
+    <button type="submit" name="Save" (click)="onSave()">{{ 'buttons.save' | translate }}</button>
   </div>
 </div>
 <app-default-field *ngIf="!allDateDefined" [defaultValuesNoSet] = "defaultValuesNoSet"></app-default-field>

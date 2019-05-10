@@ -9,7 +9,8 @@ import { StatisticsComponent } from './components/statistics/statistics.componen
 import { ExportComponent } from './components/export/export.component';
 import { StudentFormComponent } from './components/students/student-form/student-form.component';
 import { FormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HttpClient } from '@angular/common/http';
+import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 import { DataService } from './common/services/db-service/data.service';
 import { SubjectFormComponent } from './components/subjects/subject-form/subject-form.component';
 import { FormTemplateComponent } from './shared/components/forms/form-template/form-template.component';
@@ -31,6 +32,7 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { RouterModule } from '@angular/router';
 import { EffectsModule } from '@ngrx/effects';
 import { ActionsEffects } from './store/effects/actions.effects';
+import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 
 @NgModule({
   declarations: [
@@ -53,14 +55,21 @@ import { ActionsEffects } from './store/effects/actions.effects';
     FormsModule,
     HttpClientModule,
     AlertModule.forRoot(),
-    StoreModule.forRoot({'state' : jornalReducer}),
+    StoreModule.forRoot({ 'state': jornalReducer }),
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,
     RouterModule.forRoot([]),
     StoreRouterConnectingModule.forRoot(),
     EffectsModule.forRoot([ActionsEffects]),
+    TranslateModule.forRoot({
+        loader: {
+            provide: TranslateLoader,
+            useFactory: HttpLoaderFactory,
+            deps: [HttpClient]
+        }
+    }),
     StoreDevtoolsModule.instrument({
-      maxAge: 25, 
+      maxAge: 25,
     }),
   ],
   providers: [
@@ -71,3 +80,7 @@ import { ActionsEffects } from './store/effects/actions.effects';
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+
+export function HttpLoaderFactory(http: HttpClient) {
+  return new TranslateHttpLoader(http);
+}
