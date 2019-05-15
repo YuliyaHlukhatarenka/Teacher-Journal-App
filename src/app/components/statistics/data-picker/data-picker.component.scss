@@ -1,0 +1,43 @@
+.dropdown-container {
+    input {
+        background-color: black;
+        border: 1px solid white;
+    }
+    .input-section {
+        display: grid;
+        grid-template-columns: 90% 10%;  
+        padding-bottom: 10px;
+    }
+    .treeview {
+        display: grid;
+        grid-gap: 5px;
+        grid-template-columns: 10% 90%;
+        padding-top: 10px;
+        .arrow-button {
+            width: 25px;
+            border: 0;
+            border-radius: 5px;
+            background-color: rgb(77, 74, 74);
+            color: rgb(255, 136, 0);
+        }
+        .subject-section {
+            display: none;
+            .sub-item {
+                margin: 0 0 0 20px;
+            }
+        }
+    }
+    .treeview-container {
+        display: none;
+        .control-button {
+            width: 150px;
+            border: 0;
+            border-radius: 8px;
+            background-color: rgb(77, 74, 74);
+            color: rgb(255, 136, 0);
+            padding: 5px;
+        
+        }
+    }
+}
+

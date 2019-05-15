@@ -1,0 +1,15 @@
+<div class="statistics-container">
+    <app-data-picker (onChange)="redrawTable($event)"></app-data-picker>
+    <table class="main-table">
+        <tr *ngFor="let subject of subjects; let i = index">
+            <td>{{subjects[i].name}}</td>
+            <td>
+                <table>
+                    <tr *ngFor="let item of subjects[i].studentAndMarks | toIterableByKey; let j = index">
+                        <td>{{item}}</td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+</div>
