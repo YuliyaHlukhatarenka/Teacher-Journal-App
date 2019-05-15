@@ -1,0 +1,33 @@
+<div class="dropdown-container">
+    <div class="input-section">
+        <input type="text" [value]="selected_days" />
+        <button (click)="onCloseOpenList()">&#9660;</button>
+    </div>
+    <div id="tree" class="treeview-container">
+        <div>
+            <button class="control-button" (click)="onCheckAll($event)">CHECK ALL</button>
+        </div>
+        <div (change)="checkboxChanged($event)">
+            <div class="treeview" *ngFor="let subject of subjects; let i = index">
+                <div>
+                    <button class="arrow-button" (click)="onExpandCollapse($event)">&#9654;</button>
+                </div>
+                <div>
+                    <input class="level0" [id]="i" type="checkbox" [(ngModel)]="subjects[i].checked" />
+                    <label>{{subject.name}}</label>
+                    <div class="subject-section">
+                        <div class="sub-item" *ngFor="let day of subject.marks; let j = index">
+                            <label>
+                                <input type="checkbox" [(ngModel)]="subjects[i].marks[j].checked" />
+                                {{day.date}}
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div>
+            <button class="control-button" (click)="onExpandAll($event)">EXPAND ALL</button>
+        </div>
+    </div>
+</div>

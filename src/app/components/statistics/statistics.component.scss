@@ -1,0 +1,17 @@
+.statistics-container {
+    display: grid;
+    grid-gap: 15px;
+    grid-template-columns: 40% 60%;
+    .main-table {
+        border: 2px solid grey;
+        tr, td {
+            border: 1px solid grey;
+        }
+        table {
+            margin: 0 auto;
+            tr, td {
+                border: 0px none;
+            }
+        }
+    }
+}

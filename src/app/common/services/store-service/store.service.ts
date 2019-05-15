@@ -47,7 +47,7 @@ export class StoreService {
           return of('ok');
         })).subscribe(res => {
           if (res["status"] === "OK") {
-            this.store.dispatch(new StoreActions.UpdateStore(subject, 'subject'))
+            this.store.dispatch(new StoreActions.UpdateStore(subject, subject._id))
            }
         })
       }

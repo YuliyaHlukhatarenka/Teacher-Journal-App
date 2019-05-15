@@ -33,6 +33,12 @@ import { RouterModule } from '@angular/router';
 import { EffectsModule } from '@ngrx/effects';
 import { ActionsEffects } from './store/effects/actions.effects';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
+import { DataPickerService } from './common/services/data-picker/data-picker.service';
+import { DataPickerComponent } from './components/statistics/data-picker/data-picker.component';
+import { AccordionModule } from 'ngx-bootstrap/accordion';
+import { CollapseModule } from 'ngx-bootstrap/collapse';
+import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
+
 
 @NgModule({
   declarations: [
@@ -48,6 +54,7 @@ import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
     DefaultFieldComponent,
     SubjectDetailsComponent,
     ToIterableByKeyPipe,
+    DataPickerComponent
   ],
   imports: [
     BrowserModule,
@@ -70,11 +77,15 @@ import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
     }),
     StoreDevtoolsModule.instrument({
       maxAge: 25,
-    }),
+    }), 
+    AccordionModule.forRoot(),
+    CollapseModule.forRoot(),
+    BsDropdownModule.forRoot()
   ],
   providers: [
     DataService,
     DecimalPipe,
+    DataPickerService,
     { provide: FirestoreSettingsToken, useValue: {} }
   ],
   bootstrap: [AppComponent]
