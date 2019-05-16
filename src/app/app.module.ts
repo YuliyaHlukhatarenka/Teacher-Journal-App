@@ -16,7 +16,7 @@ import { SubjectFormComponent } from './components/subjects/subject-form/subject
 import { FormTemplateComponent } from './shared/components/forms/form-template/form-template.component';
 import { FormAddItemComponent } from './common/forms/form-add-item/form-add-item.component';
 import { AlertModule } from 'ngx-bootstrap/alert';
-import { DefaultFieldComponent } from './components/alerts/default-field/default-field.component';
+import { DefaultFieldComponent } from './common/forms/alerts/default-field/default-field.component';
 import { SubjectDetailsComponent } from './components/subjects/subject-details/subject-details.component';
 import { StoreModule } from '@ngrx/store';
 import { jornalReducer } from './store/reducers/jornal.reducer';
@@ -38,7 +38,8 @@ import { DataPickerComponent } from './components/statistics/data-picker/data-pi
 import { AccordionModule } from 'ngx-bootstrap/accordion';
 import { CollapseModule } from 'ngx-bootstrap/collapse';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
-
+import { MessageComponent } from './common/forms/form-add-item/message.component';
+import { PopoverModule } from 'ngx-bootstrap/popover';
 
 @NgModule({
   declarations: [
@@ -54,7 +55,8 @@ import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
     DefaultFieldComponent,
     SubjectDetailsComponent,
     ToIterableByKeyPipe,
-    DataPickerComponent
+    DataPickerComponent,
+     MessageComponent
   ],
   imports: [
     BrowserModule,
@@ -80,7 +82,8 @@ import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
     }), 
     AccordionModule.forRoot(),
     CollapseModule.forRoot(),
-    BsDropdownModule.forRoot()
+    BsDropdownModule.forRoot(),
+    PopoverModule.forRoot()
   ],
   providers: [
     DataService,
@@ -88,7 +91,8 @@ import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
     DataPickerService,
     { provide: FirestoreSettingsToken, useValue: {} }
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [MessageComponent]
 })
 export class AppModule { }
 
