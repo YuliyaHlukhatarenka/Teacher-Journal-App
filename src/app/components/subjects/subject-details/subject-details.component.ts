@@ -1,4 +1,4 @@
-import { Component, OnInit, Renderer2 } from '@angular/core';
+import { Component, OnInit, Renderer2, forwardRef } from '@angular/core';
 import { DataService } from '../../../common/services/db-service/data.service';
 import { Subject, Mark, User } from '../../../common/entities/';
 import { ActivatedRoute } from '@angular/router';
@@ -8,6 +8,7 @@ import { CalculateAverageService } from '../../../common/services/calculate/calc
 import { Store, select } from '@ngrx/store';
 import { StoreService } from '../../../common/services/store-service/store.service';
 import { AppState } from '../../../store/state/jornal.state';
+
 
 @Component({
   selector: 'app-subject-details',
@@ -25,6 +26,7 @@ export class SubjectDetailsComponent implements OnInit {
   currentDateInput;
   allDateDefined: boolean;
   defaultValuesNoSet: string = "new date column";
+ 
 
   constructor(
     private convertDataService: ConvertDataService,
@@ -45,11 +47,14 @@ export class SubjectDetailsComponent implements OnInit {
     this.title = this.route.snapshot.params.title;
     this.store.pipe(select('state')).subscribe(res => { 
       this.students = res.students;
-      this.subject = res.subjects.find(el => el.name === this.title);
+      this.subject = <Subject>res.subjects.find(el => el.name === this.title);
+      // this.subject.marks = subj.marks;
+      // this.subject.average = subj.average;
     })  
         this.marks = this.convertDataService.convertToWorkObject(this.students, this.subject.marks);
         this.subject.marks.map(el => this.newDate[el.date] = el.date);
         this.average = this.subject.average;
+      
   }
 
   public openAddNewColumnDate() {
@@ -61,7 +66,6 @@ export class SubjectDetailsComponent implements OnInit {
   }
 
   public onSave() {
-    this.allDateDefined = true;
     for (let item in this.newDate) {
       if (!this.newDate[item]) {
         this.allDateDefined = false;

@@ -7,7 +7,7 @@
       <input *ngIf="fieldsTitle[i]" type="text" [id]="key" [(ngModel)]="item[key]" />
     </div>
     <div class="form-actions">
-      <button type="submit" (click)="onClickAdd($event)" name="Add">{{ 'buttons.add' | translate }}</button>
+      <button type="submit" (click)="onClickAdd()" name="Add">{{ 'buttons.add' | translate }}</button>
     </div>
   </div>
   <app-default-field *ngIf="!defaultFieldDefined" [defaultValuesNoSet]="defaultValuesNoSet"></app-default-field>

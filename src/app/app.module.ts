@@ -10,7 +10,7 @@ import { ExportComponent } from './components/export/export.component';
 import { StudentFormComponent } from './components/students/student-form/student-form.component';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
-import {TranslateHttpLoader} from '@ngx-translate/http-loader';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { DataService } from './common/services/db-service/data.service';
 import { SubjectFormComponent } from './components/subjects/subject-form/subject-form.component';
 import { FormTemplateComponent } from './shared/components/forms/form-template/form-template.component';
@@ -23,7 +23,6 @@ import { jornalReducer } from './store/reducers/jornal.reducer';
 import { DecimalPipe } from '@angular/common';
 import { environment } from '../environments/environment';
 export const firebase = environment.firebase;
-
 import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule, FirestoreSettingsToken } from '@angular/fire/firestore';
 import { ToIterableByKeyPipe } from './common/pipes/to-iterable-by-key/to-iterable-by-key.pipe';
@@ -40,6 +39,8 @@ import { CollapseModule } from 'ngx-bootstrap/collapse';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { MessageComponent } from './common/forms/form-add-item/message.component';
 import { PopoverModule } from 'ngx-bootstrap/popover';
+import { NgxUiLoaderModule } from  'ngx-ui-loader';
+import {ReactiveFormsModule} from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -56,18 +57,19 @@ import { PopoverModule } from 'ngx-bootstrap/popover';
     SubjectDetailsComponent,
     ToIterableByKeyPipe,
     DataPickerComponent,
-     MessageComponent
+    MessageComponent
   ],
   imports: [
     BrowserModule,
+    ReactiveFormsModule,
     AppRoutingModule,
+    NgxUiLoaderModule, 
     FormsModule,
     HttpClientModule,
     AlertModule.forRoot(),
     StoreModule.forRoot({ 'state': jornalReducer }),
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,
-    RouterModule.forRoot([]),
     StoreRouterConnectingModule.forRoot(),
     EffectsModule.forRoot([ActionsEffects]),
     TranslateModule.forRoot({

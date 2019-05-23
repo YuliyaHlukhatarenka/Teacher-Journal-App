@@ -8,6 +8,7 @@ import { StudentFormComponent } from '../components/students/student-form/studen
 import { SubjectFormComponent} from '../components/subjects/subject-form/subject-form.component';
 import { SubjectDetailsComponent } from '../components/subjects/subject-details/subject-details.component';
 
+
 const routes: Routes = [
   { path: '', redirectTo: '/students', pathMatch: 'full' },
   { path: 'students', component: StudentsComponent },

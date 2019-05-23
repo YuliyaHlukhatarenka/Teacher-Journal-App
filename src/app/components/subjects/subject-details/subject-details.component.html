@@ -3,25 +3,28 @@
   <div class="add-new-date-button">
     <button (click)="openAddNewColumnDate()"> + </button>
   </div>
-  <table>
-    <tr>
-      <th>{{ 'student.firstname' | translate }}</th>
-      <th>{{ 'student.lastname' | translate }}</th>
-      <th>{{ 'student.average_mark' | translate }}</th>
-      <th *ngFor="let item of subject.marks; let i = index">
-        <input type="text" [value]="item.date" [(ngModel)]="newDate[item.date]"
-          (blur)="onBlur($event)" (focusin)="onFocusInDateTitle($event)">
-      </th>
-    </tr>
-    <tr *ngFor="let student of students" (focusin)="onFocusIn($event)"
-      (focusout)="onFocusOut($event, student.firstName, student.lastName)">
-      <td>{{student.firstName}}</td>
-      <td>{{student.lastName}}</td>
-      <td>{{average[student.firstName+' '+student.lastName]}}</td>
-      <td *ngFor="let item of subject.marks; let i = index">
-        <input type="text" *ngIf="marks[item.date]" [(ngModel)]="marks[item.date][student.firstName+' '+student.lastName]"> </td>
-    </tr>
-  </table>
+  <div class="table-container">
+    <table>
+      <tr>
+        <th>{{ 'student.firstname' | translate }}</th>
+        <th>{{ 'student.lastname' | translate }}</th>
+        <th>{{ 'student.average_mark' | translate }}</th>
+        <th *ngFor="let item of subject.marks; let i = index">
+          <input type="text" [value]="item.date" [(ngModel)]="newDate[item.date]" (blur)="onBlur($event)"
+            (focusin)="onFocusInDateTitle($event)">
+        </th>
+      </tr>
+      <tr *ngFor="let student of students" (focusin)="onFocusIn($event)"
+        (focusout)="onFocusOut($event, student.firstName, student.lastName)">
+        <td>{{student.firstName}}</td>
+        <td>{{student.lastName}}</td>
+        <td>{{average[student.firstName+' '+student.lastName]}}</td>
+        <td *ngFor="let item of subject.marks; let i = index">
+          <input type="text" *ngIf="marks[item.date]"
+            [(ngModel)]="marks[item.date][student.firstName+' '+student.lastName]"> </td>
+      </tr>
+    </table>
+  </div>
   <div class="edit-teacher-section">
     <p>{{ 'Teacher:' | translate }}</p>
     <input class="edit-teacher-input" type="text" [(ngModel)]="subject.teacher">
@@ -30,4 +33,4 @@
     <button type="submit" name="Save" (click)="onSave()">{{ 'buttons.save' | translate }}</button>
   </div>
 </div>
-<app-default-field *ngIf="!allDateDefined" [defaultValuesNoSet] = "defaultValuesNoSet"></app-default-field>
+<app-default-field *ngIf="!allDateDefined" [defaultValuesNoSet]="defaultValuesNoSet"></app-default-field>
