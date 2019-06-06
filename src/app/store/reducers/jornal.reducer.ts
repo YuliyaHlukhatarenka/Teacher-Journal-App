@@ -10,7 +10,6 @@ export function jornalReducer(state = initialState, action: AppActions) {
 
     case ActionTypes.UPDATE_STORE:
       state.subjects = [...state.subjects.filter(item => item._id !== action.itemToUpdate), action.payload];
-      console.log(state.subjects);
       return state;
 
     case ActionTypes.ADD_TO_STORE:

@@ -13,6 +13,7 @@
       <div class="nav-button"><a routerLink="/statistics" routerLinkActive="active">{{ 'nav.statistics' | translate }}</a></div>
       <div class="nav-button"><a routerLink="/export" routerLinkActive="active">{{ 'nav.export' | translate }}</a></div>
     </nav>
-    <router-outlet></router-outlet>
+    <ngx-ui-loader *ngIf="!isDataloaded"></ngx-ui-loader>
+    <router-outlet *ngIf="isDataloaded"></router-outlet>
   </div>
 </div>

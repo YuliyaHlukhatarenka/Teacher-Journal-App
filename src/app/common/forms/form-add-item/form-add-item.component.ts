@@ -1,4 +1,5 @@
-import { Component, OnInit, Input, Output, EventEmitter, Renderer2 } from '@angular/core';
+import { Component, ViewChild, ViewContainerRef, ComponentFactory, ComponentRef, ComponentFactoryResolver, Input, Output, EventEmitter, Renderer2 } from '@angular/core';
+import { MessageComponent } from './message.component';
 
 @Component({
   selector: 'app-form-add-item',
@@ -6,6 +7,7 @@ import { Component, OnInit, Input, Output, EventEmitter, Renderer2 } from '@angu
   styleUrls: ['./form-add-item.component.scss']
 })
 export class FormAddItemComponent {
+  @ViewChild('messagecontainer', { read: ViewContainerRef }) entry: ViewContainerRef;
   @Output() public onClick = new EventEmitter();
   @Input() public formTitle: string;
   @Input() public item;
@@ -16,8 +18,10 @@ export class FormAddItemComponent {
   public defaultValuesNoSet: string;
 
   values: object = {};
+  componentRef: any;
 
-  constructor(private renderer: Renderer2) { }
+
+ constructor(private renderer: Renderer2, private resolver: ComponentFactoryResolver) { }
 
   public onClickAdd() {
     this.defaultValuesNoSet = this.requiredFields.find(el => {
@@ -27,9 +31,18 @@ export class FormAddItemComponent {
       this.defaultFieldDefined = false;
       let input = document.getElementById(this.defaultValuesNoSet);
       this.renderer.addClass(input, 'error-input');
+      this.onShown("FAIL");
     } else {
-      this.onClick.emit();
+      this.onShown("SUCCESS");
+      setTimeout( () => this.onClick.emit(), 3000);
     }
+  }
+  onShown( message) {
+      this.entry.clear();
+      const factory = this.resolver.resolveComponentFactory(MessageComponent);
+      this.componentRef = this.entry.createComponent(factory);
+      this.componentRef.instance.message = message;
+     setTimeout( () => this.componentRef.destroy(), 2000);
   }
 
 }
