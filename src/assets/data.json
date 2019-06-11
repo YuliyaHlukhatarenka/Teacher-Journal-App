@@ -71,27 +71,84 @@
         "description": "Description for student Hudson"
       }
     ],
-    "friends": [
+    "subjects": [
       {
         "id": 0,
         "name": "Physics",
         "teacher": "Maria Hayes",
-        "cabiner": 7,
-        "description": "Description for subject Physics"
+        "cabinet": 7,
+        "description": "Description for subject Physics",
+        "marks": [
+          { 
+            "date": "04/02",
+            "Mccray Henderson": "9.0",
+            "Elaine Coleman": "8.3"
+            },
+            { 
+              "date": "05/02",
+              "Eve Knapp": "4.0",
+              "Elaine Coleman": "4.4",
+              "Valeria Sherman": "2.0"
+              }
+        ],
+       "average": {
+        "Mccray Henderson": "9.0",
+        "Elaine Coleman": "6.4",
+        "Eve Knapp": "4.0",
+        "Valeria Sherman": "2.0"
+       }
       },
       {
         "id": 1,
         "name": "Chemistry",
         "teacher": "Blackburn Walls",
-        "cabiner": 75,
-        "description": "Description for subject Chemistry"
+        "cabinet": 75,
+        "description": "Description for subject Chemistry",
+        "marks": [
+          { 
+            "date": "04/02",
+            "Mccray Henderson": "9.0",
+            "Elaine Coleman": "8.3"
+            },
+            { 
+              "date": "05/02",
+              "Eve Knapp": "4.0",
+              "Elaine Coleman": "4.4",
+              "Valeria Sherman": "2.0"
+              }
+        ],
+       "average": {
+        "Mccray Henderson": "9.0",
+        "Elaine Coleman": "6.4",
+        "Eve Knapp": "4.0",
+        "Valeria Sherman": "2.0"
+       }
       },
       {
         "id": 2,
         "name": "Literature",
         "teacher": "Kennedy Fernandez",
-        "cabiner": 13,
-        "description": "Description for subject Literature"
+        "cabinet": 13,
+        "description": "Description for subject Literature",
+        "marks": [
+          { 
+            "date": "04/02",
+            "Mccray Henderson": "9.0",
+            "Elaine Coleman": "8.3"
+            },
+            { 
+              "date": "05/02",
+              "Eve Knapp": "4.0",
+              "Elaine Coleman": "4.4",
+              "Valeria Sherman": "2.0"
+              }
+        ],
+       "average": {
+        "Mccray Henderson": "9.0",
+        "Elaine Coleman": "6.4",
+        "Eve Knapp": "4.0",
+        "Valeria Sherman": "2.0"
+       }
       }
     ]
   }

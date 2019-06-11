@@ -5,6 +5,8 @@ import { SubjectsGridComponent } from '../components/subjects/subjects-grid/subj
 import { StatisticsComponent } from '../components/statistics/statistics.component';
 import { ExportComponent } from '../components/export//export.component';
 import { StudentFormComponent } from '../components/students/student-form/student-form.component';
+import { SubjectFormComponent} from '../components/subjects/subject-form/subject-form.component';
+import { SubjectDetailsComponent } from '../components/subjects/subject-details/subject-details.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/students', pathMatch: 'full' },
@@ -13,6 +15,8 @@ const routes: Routes = [
   { path: 'statistics', component: StatisticsComponent },
   { path: 'export', component: ExportComponent },
   { path: 'students/new-student', component:  StudentFormComponent },
+  { path: 'subjects/new-subject', component:  SubjectFormComponent },
+  { path: 'subjects/:title', component:  SubjectDetailsComponent },
 ];
 
 @NgModule({

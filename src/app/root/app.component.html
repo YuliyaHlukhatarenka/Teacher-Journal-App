@@ -1,11 +1,11 @@
 <div>
   <div class="main-container">
-    <h1>{{title}}</h1>
+    <h1><b>{{title}}</b></h1>
     <nav>
-      <div><a routerLink="/students">Students</a></div>
-      <div><a routerLink="/subjects">Subjects</a></div>
-      <div><a routerLink="/statistics">Statistics</a></div>
-      <div><a routerLink="/export">Export</a></div>
+      <div class="nav-button"><a routerLink="/students" routerLinkActive="active">Students</a></div>
+      <div class="nav-button"><a routerLink="/subjects" routerLinkActive="active">Subjects</a></div>
+      <div class="nav-button"><a routerLink="/statistics" routerLinkActive="active">Statistics</a></div>
+      <div class="nav-button"><a routerLink="/export" routerLinkActive="active">Export</a></div>
     </nav>
     <router-outlet></router-outlet>
   </div>

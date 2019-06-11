@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import User from '../../../common/entities/Users';
-import { DataService } from '../../../common/services/data.service';
+import { User } from '../../../common/entities/';
+import { DataService } from '../../../common/services/storage-service/data.service';
 
 @Component({
   selector: 'app-students-table',
@@ -14,7 +14,7 @@ export class StudentsComponent implements OnInit {
   constructor(private router: Router, private dataService: DataService) {}
 
   ngOnInit() {
-    this.students = this.dataService.get('students');
+    this.students = this.dataService.getDataFromLocalStorage('students');
   }
 
 

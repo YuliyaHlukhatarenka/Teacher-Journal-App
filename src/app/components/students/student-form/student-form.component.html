@@ -1,22 +1,4 @@
 <div>
-  <p>Add new student:</p>
-  <div class="input-form">
-  
-      <p>* Name:</p>
-      <input type="text" [value]="StudentForm.firstName" [(ngModel)]="StudentForm.firstName"/>
-
-     
-      <p>* Last name:</p>
-      <input type="text" [value]="StudentForm.lastName" [(ngModel)]="StudentForm.lastName">
- 
-  
-      <p>Address:</p>
-      <input type="text" [value]="StudentForm.address" [(ngModel)]="StudentForm.address">
-
-    
-      <p>Description:</p>
-      <input type="text" [value]="StudentForm.description" [(ngModel)]="StudentForm.description">
-    
-  </div>
-  <input type="submit" (click)="AddNewStudent()" name="Add" value="Add">
+  <app-form-add-item [formTitle]="formTitle" [item]="student" [fieldsTitle]="fieldsTitle"  [requiredFields] ="requiredFields" (onClick)="AddNewStudent()">
+  </app-form-add-item>
 </div>

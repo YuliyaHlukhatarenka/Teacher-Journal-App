@@ -1,23 +1,5 @@
 <div>
-    <p>Add new subject:</p>
-    <div class="input-form">
-    
-        <p>* Name:</p>
-        <input type="text" [value]="newSubject.name" [(ngModel)]="newSubject.name"/>
-  
-       
-        <p>* Teacher:</p>
-        <input type="text" [value]="newSubject.teacher" [(ngModel)]="newSubject.teacher">
-   
-    
-        <p>Cabinet:</p>
-        <input type="text" [value]="cabinet" [(ngModel)]="cabinet">
-  
-      
-        <p>Description:</p>
-        <input type="text" [value]="description" [(ngModel)]="description">
-      
-    </div>
-    <input type="submit" (click)="AddNewStudent()" name="Add" value="Add">
+    <app-form-add-item [formTitle]="formTitle" [item]="subject" [fieldsTitle]="fieldsTitle" [requiredFields] ="requiredFields" (onClick)="AddNewSubject()">
+    </app-form-add-item>
   </div>
-  
+

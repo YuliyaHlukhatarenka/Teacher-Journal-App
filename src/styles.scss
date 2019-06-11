@@ -1,6 +1,6 @@
 body {
     background-color: black;
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-family: 'Arial', 'Arial Narrow', Arial, sans-serif;
     color: white;
 
     a {
@@ -8,11 +8,48 @@ body {
         color: white;
     }
 
-    a:visited {
-        color: white;
-    }
-  
-    a:active {
+    a:hover {
         color: orange;
+        text-decoration: none;
     }
+
+    .form-title {
+        font-size: 1.7rem;
+        margin-bottom: 0;
+    }
+    .form-actions {
+        position: relative;
+        margin: 0 auto;
+        font-size: 25px;
+        button {
+            margin: 0 auto;
+            width: 150px;
+            border: 0;
+            border-radius: 8px;
+            background-color: rgb(77, 74, 74);
+            color: rgb(255, 136, 0);
+        
+        }
+    }
+
+    .add-new-button {
+        margin: 5% auto;
+        width: 80px;
+        height: 80px;
+        background-color: white;
+        border-radius: 50%;
+        button {
+          position: relative;
+          margin: 0 10px;
+          background-color: rgba(114, 75, 75, 0);
+          font-size: 80px;
+          font-weight: bold;
+          border: 0;
+          line-height: 80px;
+        }
+        :hover {
+            cursor: pointer;
+        }
+    }
+    
 }

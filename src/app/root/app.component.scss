@@ -1,25 +1,24 @@
 .main-container {
-    max-width: 800px;
+    max-width: 700px;
     margin: 0 auto;
      nav {
         display: grid;
         grid-template-columns: repeat(4, 1fr);   
-            margin: 50px 100px;
-        max-width: 500px;
+        max-width: 650px;
         margin: 5% auto;
-        
-
-        div {
+        .nav-button {
             background-color: rgb(77, 74, 74);
-            width: 100px;
+            width: 150px;
             height: 50px;
-            border-radius: 10%;
+            border-radius: 8px;
             line-height: 50px;
             text-align: center;
             vertical-align: middle;
             font-size: 1.3em;
         }
     }
-
+    .active {
+       color: rgb(255, 136, 0);
+    }
 }
 
