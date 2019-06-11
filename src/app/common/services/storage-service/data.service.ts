@@ -1,16 +1,14 @@
 import { Injectable } from '@angular/core';
-import { HttpClient} from '@angular/common/http';
-import JsonFile from '../../../assets/data.json';
-
+import JsonFile from '../../../../assets/data.json';
 
 @Injectable({
   providedIn: 'root'
 })
 export class DataService {
 
-  constructor(private http: HttpClient) {}
+  constructor() {}
 
-  get(item: string) {
+  getDataFromLocalStorage(item: string) {
     if ( !localStorage.getItem(item) ) {
        localStorage.setItem(item, JSON.stringify(JsonFile[item]));
 
@@ -18,12 +16,12 @@ export class DataService {
     return JSON.parse(localStorage.getItem(item));
   }
 
-  add(element, item) {
+  addDataToLocalStorage(element, item) {
     const data = JSON.parse(localStorage.getItem(item));
     localStorage.setItem(item, JSON.stringify(data.concat([element])));
   }
 
-  delete(element, item) {
+  deleteDataFromLocalStorage(element, item) {
     const data = JSON.parse(localStorage.getItem(item)).filter( el => el.name != element);
     localStorage.setItem(item, JSON.stringify(data));
   }

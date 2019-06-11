@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Subject } from '../../../common/entities/';
-import { DataService } from '../../../common/services/data.service';
+import { DataService } from '../../../common/services/storage-service/data.service';
 import { Router } from '@angular/router';
 
 @Component({
@@ -14,7 +14,7 @@ export class SubjectsGridComponent implements OnInit {
   constructor(private router: Router, private dataService: DataService) {}
 
   ngOnInit() {
-    this.subjects = this.dataService.get('subjects');
+    this.subjects = this.dataService.getDataFromLocalStorage('subjects');
   }
 
 

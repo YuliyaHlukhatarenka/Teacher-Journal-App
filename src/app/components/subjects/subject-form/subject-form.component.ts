@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Subject } from 'src/app/common/entities/';
-import { DataService } from '../../../common/services/data.service';
+import { DataService } from '../../../common/services/storage-service/data.service';
 import { Router } from '@angular/router';
 
 @Component({
@@ -11,19 +11,21 @@ import { Router } from '@angular/router';
 export class SubjectFormComponent implements OnInit {
   subject = new Subject('', '', '', '');
   formTitle: string = "Add new subject:";
-  fieldsTitle: string[] = ["* Name", "* Teacher", "Cabinet", "Description"] ;
+  fieldsTitle: string[] = ["* Name", "* Teacher", "Cabinet", "Description"];
   requiredFields: string[] = ["name", "teacher"];
 
   constructor(private dataService: DataService, private router: Router) {
   }
 
  ngOnInit() {
+  Object.defineProperty(this.subject, "marks", {enumerable: false});
+  Object.defineProperty(this.subject, "average", {enumerable: false});
  }
+ 
 
  public AddNewSubject() {
-   this.dataService.add(this.subject, 'subjects');
+   this.dataService.addDataToLocalStorage(this.subject, 'subjects');
    this.router.navigate(['/subjects']);
  }
-
 
 }

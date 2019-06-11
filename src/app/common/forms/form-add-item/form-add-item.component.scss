@@ -3,7 +3,7 @@
     grid-template-rows: repeat(5, 1fr);
     grid-gap: 10px;
     border: 2px solid grey;
-    margin: 50px auto;
+    margin: 20px auto;
     padding: 30px 30px;
     font-size: 1.5rem;
     .form-content {
@@ -14,8 +14,11 @@
             background-color: rgba(0, 0, 0, 0);
             border: 2px solid grey;
             border-radius: 8px;
+            color:white;
+        }
+        .error-input {
+            border: 2px solid rgb(88, 17, 17);
         }
     }
-  
 
 }
