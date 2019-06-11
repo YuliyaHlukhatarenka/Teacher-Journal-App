@@ -14,7 +14,7 @@ export class StudentsComponent implements OnInit {
   constructor(private router: Router, private dataService: DataService) {}
 
   ngOnInit() {
-    this.students = this.dataService.get('students');
+    this.students = this.dataService.getDataFromLocalStorage('students');
   }
 
 

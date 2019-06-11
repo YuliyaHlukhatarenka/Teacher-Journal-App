@@ -13,6 +13,8 @@ export class Subject {
         this.teacher = teacher;
         this.cabinet = cabinet;
         this.description = description;
+        this.marks = [];
+        this.average = {};
     }
   
     // private id: string = uuidv1();

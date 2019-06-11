@@ -22,7 +22,7 @@ export class  StudentFormComponent implements OnInit {
   }
 
   public AddNewStudent() {
-    this.dataService.add(this.student, 'students');
+    this.dataService.addDataToLocalStorage(this.student, 'students');
     this.router.navigate(['/students']);
   }
 
