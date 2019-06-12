@@ -3,16 +3,16 @@
     <tr>
       <th>{{ 'student.id' |  translate}}</th>
       <th>{{ 'student.firstname' |  translate}}</th>
-      <th>{{ 'student.lastname' |  translate}}</th> 
+      <th>{{ 'student.lastname' |  translate}}</th>
       <th>{{ 'student.address' |  translate}}</th>
       <th>{{ 'student.comment' |  translate}}</th>
     </tr>
-    <tr *ngFor="let student of ( state$ | async ).students; let i = index">
-        <td>{{i+1}}</td>
-        <td>{{student.firstName}}</td> 
-        <td>{{student.lastName}}</td>
-        <td>{{student.address}}</td>
-        <td></td>
+    <tr *ngFor="let student of ( studentsState$ | async ).students; let i = index">
+      <td>{{i+1}}</td>
+      <td>{{student.firstName}}</td>
+      <td>{{student.lastName}}</td>
+      <td>{{student.address}}</td>
+      <td></td>
     </tr>
   </table>
   <div class="add-new-button">

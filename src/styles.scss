@@ -28,10 +28,8 @@ body {
             border-radius: 8px;
             background-color: rgb(77, 74, 74);
             color: rgb(255, 136, 0);
-        
         }
     }
-
     .add-new-button {
         margin: 5% auto;
         width: 80px;
@@ -51,5 +49,14 @@ body {
             cursor: pointer;
         }
     }
+
+    rect {
+        fill: gray;
+    }
+    svg text {
+        fill: yellow;
+        font: 12px sans-serif;
+        text-anchor: end;
+     }
     
 }

@@ -1,118 +1,133 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-import { DataPickerService } from '../../../common/services/data-picker/data-picker.service';
-
+import { Store } from '@ngrx/store';
+import { IAppState } from '../../../store/state/app.state';
+import { ISubject, IMark, IStudent } from '../../../common/entities/';
 @Component({
   selector: 'app-data-picker',
   templateUrl: './data-picker.component.html',
   styleUrls: ['./data-picker.component.scss']
 })
 export class DataPickerComponent implements OnInit {
-  @Output() public onChange = new EventEmitter<object>();
-  public subjects;
-  public selected_days;
-  public listOpened = false;
+  @Output() public onChange: EventEmitter<object> = new EventEmitter<object>();
+  public subjects: ISubject[];
+  public selectedDays: string[] = [];
+  public listOpened: boolean = false;
 
-  constructor(private dataPickerService: DataPickerService) { }
+  constructor(private store: Store<IAppState>) { }
 
-  ngOnInit() {
-    this.subjects = this.dataPickerService.getDataForPicker();
+  public ngOnInit(): void {
+    this.store.select('subjectsState').subscribe(res => this.subjects = res.subjects );
     this.selectAll(false);
   }
 
-  checkboxChanged(evt) {
-    if (evt.target.nodeName === 'INPUT') {
-      if (evt.target.parentNode.nodeName === 'DIV') {
-        if (evt.target.checked) {
-          this.subjects[evt.target.id].marks.map(el => { this.selected_days.push(el.date); el.checked = true; return el })
+  public checkboxChanged(evt: MouseEvent): void {
+    if ((evt.target as HTMLInputElement).nodeName === 'INPUT') {
+      if ((evt.target as HTMLInputElement).parentNode.nodeName === 'DIV') {
+        if ((evt.target as HTMLInputElement).checked) {
+          this.subjects[(evt.target as HTMLInputElement).id].marks
+          .map(el => { this.selectedDays.push(el.date); el.checked = true; return el; });
         } else {
-          this.subjects[evt.target.id].marks.map(el => { el.checked = false; return el })
+          this.subjects[(evt.target as HTMLInputElement).id].marks.map(el => { el.checked = false; return el; });
         }
       } else {
-        if (!evt.target.checked) {
-          let subject_id = evt.target.parentNode.parentNode.parentNode.parentNode.getElementsByClassName('level0')[0].id;
-          this.subjects[subject_id].checked = false;
+        if (!(evt.target as HTMLInputElement).checked) {
+          let subjectId: string =
+          (evt.target as HTMLInputElement).parentNode.parentNode.parentNode.parentNode.querySelectorAll('.level0')[0].id;
+          this.subjects[subjectId].checked = false;
         }
       }
-      this.changeSelectedValuesInput()
+      this.changeSelectedValuesInput();
     }
     this.onChange.emit(this.subjects);
   }
 
-  changeSelectedValuesInput() {
-    this.selected_days = [];
+  public changeSelectedValuesInput(): void {
+    this.selectedDays = [];
     this.subjects.map(item => {
       item.marks.map(el => {
         if (el.checked) {
-          this.selected_days.push(el.date)
+          this.selectedDays.push(el.date);
         }
-      })
-    })
+      });
+    });
   }
-  onCloseOpenList() {
+
+  public onCloseOpenList(): void {
     if (this.listOpened) {
-      document.getElementById('tree').style.display = "none";
+      document.getElementById('tree').style.display = 'none';
       this.listOpened = false;
     } else {
-      document.getElementById('tree').style.display = "block";
+      document.getElementById('tree').style.display = 'block';
       this.listOpened = true;
     }
   }
 
-  selectAll(value) {
+  public selectAll(value: boolean): void {
     this.subjects.map(item => {
       item.checked = value;
       item.marks.map(el => {
         el.checked = value;
         return el;
-      })
-      return item
+      });
+      return item;
     });
-    this.selected_days = [];
+    this.selectedDays = [];
     if (value) {
       this.changeSelectedValuesInput();
     }
-   
   }
 
-  onCheckAll(evt) {
-    if(evt.target.innerHTML === "CHECK ALL") {
-      evt.target.innerHTML = "UNCHECK ALL";
+  public onCheckAll(evt: MouseEvent): void {
+    if ((evt.target as HTMLInputElement).innerHTML === 'CHECK ALL') {
+      (evt.target as HTMLInputElement).innerHTML = 'UNCHECK ALL';
       this.selectAll(true);
     } else {
-      evt.target.innerHTML = "CHECK ALL";
+      (evt.target as HTMLInputElement).innerHTML = 'CHECK ALL';
       this.selectAll(false);
-    }  
+    }
     this.onChange.emit(this.subjects);
   }
 
-  onExpandCollapse(evt) {
-    if (evt.target.innerHTML === String.fromCharCode(9660)) {
-      evt.target.innerHTML = '&#9654;';
-      evt.target.parentNode.parentNode.getElementsByClassName('subject-section')[0].style.display = "none";
+  public onExpandCollapse(evt: MouseEvent): void {
+    if ((evt.target as HTMLInputElement).innerHTML === String.fromCharCode(9660)) {
+      (evt.target as HTMLInputElement).innerHTML = '&#9654;';
+      (evt.target as HTMLInputElement).parentNode.parentNode.querySelector('.subject-section')[0].style.display = 'none';
     } else {
-        evt.target.innerHTML = '&#9660;';
-        evt.target.parentNode.parentNode.getElementsByClassName('subject-section')[0].style.display = "block";
+      (evt.target as HTMLInputElement).innerHTML = '&#9660;';
+      (evt.target as HTMLInputElement).parentNode.parentNode.querySelector('.subject-section')[0].style.display = 'block';
     }
 
   }
 
-  onExpandAll(evt) {
-    if (evt.target.innerHTML === "EXPAND ALL") {
-      evt.target.innerHTML = "COLLAPSE ALL";
-      let list = document.getElementsByClassName('subject-section');
-      
-      for ( let i = 0; i < list.length; i++ ) {
-        (list[i] as HTMLElement).style.display = "block";
+  public onExpandAll(evt: MouseEvent): void {
+    if ((evt.target as HTMLInputElement).innerHTML === 'EXPAND ALL') {
+      (evt.target as HTMLInputElement).innerHTML = 'COLLAPSE ALL';
+
+      let rootList: HTMLCollection = document.getElementsByClassName('arrow-button');
+
+      for (let i: number = 0; i < rootList.length; i++) {
+        (rootList[i] as HTMLElement).innerHTML = '&#9660;';
+      }
+
+      let list: HTMLCollection = document.getElementsByClassName('subject-section');
+
+      for (let i: number = 0; i < list.length; i++) {
+        (list[i] as HTMLElement).style.display = 'block';
       }
     } else {
-      evt.target.innerHTML = "EXPAND ALL";
-      let list = document.getElementsByClassName('subject-section');
-      
-      for ( let i = 0; i < list.length; i++ ) {
-        (list[i] as HTMLElement).style.display = "none";
+      (evt.target as HTMLInputElement).innerHTML = 'EXPAND ALL';
+
+      let rootList: HTMLCollection = document.getElementsByClassName('arrow-button');
+
+      for (let i: number = 0; i < rootList.length; i++) {
+        (rootList[i] as HTMLElement).innerHTML = '&#9654;';
+      }
+      let list: HTMLCollection = document.getElementsByClassName('subject-section');
+
+      for (let i: number = 0; i < list.length; i++) {
+        (list[i] as HTMLElement).style.display = 'none';
       }
 
     }
   }
 }
-

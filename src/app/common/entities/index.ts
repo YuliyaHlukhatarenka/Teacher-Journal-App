@@ -1,3 +1,3 @@
-export * from './users';
+export * from './student';
 export * from './subject';
 export * from './mark';

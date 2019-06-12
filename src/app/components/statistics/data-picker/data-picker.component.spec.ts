@@ -5,7 +5,7 @@ import { DataPickerComponent } from './data-picker.component';
 import { StoreRouterConnectingModule } from '@ngrx/router-store';
 import { RouterModule } from '@angular/router';
 import { StoreModule } from '@ngrx/store';
-import { jornalReducer } from '../../../store/reducers/jornal.reducer';
+import { jornalReducer } from '../../../store/reducers/subjects.reducer';
 
 
 describe('DataPickerComponent', () => {

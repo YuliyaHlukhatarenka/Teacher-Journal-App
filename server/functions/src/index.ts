@@ -14,37 +14,37 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 exports.webApi = functions.https.onRequest(app);
 
-app.get('/students', 
-(req, res) => {
-    admin
-    .firestore()
-    .collection('students')
-    .get()
-    .then((snapshot) => {
-        const result: any = {};
-        snapshot.forEach((doc) => {
-            result[`${doc.id}`]  = doc.data();
-        });
-        res.send(Object.values(result));
-      })
-    .catch(err => res.send({ status: 'ERROR' }));
-})
+app.get('/students',
+    (req, res) => {
+        admin
+            .firestore()
+            .collection('students')
+            .get()
+            .then((snapshot) => {
+                const result = {};
+                snapshot.forEach((doc) => {
+                    result[`${doc.id}`] = doc.data();
+                });
+                res.send(Object.values(result));
+            })
+            .catch(err => res.send({ status: 'ERROR' }));
+    })
 
-app.get('/subjects', 
-(req, res) => {
-    admin
-    .firestore()
-    .collection('subjects')
-    .get()
-    .then((snapshot) => {
-        const result: any = {};
-        snapshot.forEach((doc) => {
-            result[`${doc.id}`]  = doc.data();
-        });
-        res.send(Object.values(result));
-      })
-    .catch(err => res.send({ status: 'ERROR' }));
-})
+app.get('/subjects',
+    (req, res) => {
+        admin
+            .firestore()
+            .collection('subjects')
+            .get()
+            .then((snapshot) => {
+                const result = {};
+                snapshot.forEach((doc) => {
+                    result[`${doc.id}`] = doc.data();
+                });
+                res.send(Object.values(result));
+            })
+            .catch(err => res.send({ status: 'ERROR' }));
+    })
 
 app.post("/students", (req, res) => {
     const user = req.body;
@@ -65,7 +65,7 @@ app.post("/subjects", (req, res) => {
         .doc(subject._id)
         .set(subject)
         .then(data => res.send({ status: 'OK' }))
-        .catch(err =>res.send(err));
+        .catch(err => res.send(err));
 });
 
 app.post("/subjects", (req, res) => {
@@ -76,7 +76,7 @@ app.post("/subjects", (req, res) => {
         .doc(subject._id)
         .set(subject)
         .then(data => res.send({ status: 'OK' }))
-        .catch(err =>res.send(err));
+        .catch(err => res.send(err));
 });
 
 app.delete("/subjects", (req, res) => {
@@ -87,6 +87,17 @@ app.delete("/subjects", (req, res) => {
         .doc(id)
         .delete()
         .then(data => res.send({ status: 'OK' }))
-        .catch(err =>res.send(err));
+        .catch(err => res.send(err));
+});
+
+app.post("/update/subject", (req, res) => {
+    const subject = req.body;
+    admin
+        .firestore()
+        .collection("subjects")
+        .doc(subject._id)
+        .update(subject)
+        .then(data => res.send({ status: 'OK' }))
+        .catch(err => res.send(err));
 });
 

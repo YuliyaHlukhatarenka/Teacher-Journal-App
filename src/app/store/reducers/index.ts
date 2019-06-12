@@ -1,1 +1,2 @@
-export * from './jornal.reducer';
+export * from './subjects.reducer';
+export * from './students.reducer';

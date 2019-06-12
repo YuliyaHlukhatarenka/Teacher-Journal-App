@@ -5,22 +5,26 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { HttpLoaderFactory } from 'src/app/app.module';
 import { ToIterableByKeyPipe } from '../../../common/pipes/to-iterable-by-key/to-iterable-by-key.pipe';
 import { FormsModule } from '@angular/forms';
-import { DefaultFieldComponent } from '../../../common/forms/alerts/default-field/default-field.component';
+import { DefaultFieldComponent } from '../../../common/forms/form-add-item/default-field/default-field.component';
 import { AlertModule } from 'ngx-bootstrap/alert';
 import { StoreRouterConnectingModule } from '@ngrx/router-store';
 import { RouterModule } from '@angular/router';
 import { StoreModule } from '@ngrx/store';
-import { jornalReducer } from '../../../store/reducers/jornal.reducer';
+import { jornalReducer } from '../../../store/reducers/subjects.reducer';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 
 
 import { StudentsComponent } from './students-table.component';
 import { AngularFireModule } from '@angular/fire';
 import { environment } from 'src/environments/environment';
+import { By } from '@angular/platform-browser';
+import { DebugElement } from '@angular/core';
 
 describe('StudentsComponent', () => {
   let component: StudentsComponent;
   let fixture: ComponentFixture<StudentsComponent>;
+  let de: DebugElement;
+  let el: HTMLElement;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -51,5 +55,13 @@ describe('StudentsComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should open Add new student page', () => {
+    component.openAddNewStudentPage();
+    fixture.detectChanges();
+    de = fixture.debugElement.query(By.css('p'));
+    el = de.nativeElement;
+    expect(el.textContent).toEqual('Add new student:');
   });
 });

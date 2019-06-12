@@ -1,27 +1,31 @@
 import { Component, OnInit } from '@angular/core';
-import { Subject } from 'src/app/common/entities/';
-import { StoreService } from '../../../common/services/store-service/store.service';
+import { ISubject } from 'src/app/common/entities/';
 import { Router } from '@angular/router';
-
+import { Store, select } from '@ngrx/store';
+import { IAppState } from 'src/app/store/state';
+import { AddSubject } from 'src/app/store/actions';
+import { ADD_SUBJECT_FORM_TITLE,
+  ADD_SUBJECT_FORM_FILDS_TITLE,
+  ADD_SUBJECT_FORM_REQUIRED_FIELDS } from '../../../common/constants';
 
 @Component({
   selector: 'app-new-subject',
   templateUrl: './subject-form.component.html',
   styleUrls: ['./subject-form.component.scss']
 })
-export class SubjectFormComponent implements OnInit {
-  subject = new Subject('', '', '', '');
-  formTitle: string = "Add new subject:";
-  fieldsTitle: string[] = ["* Name", "* Teacher", "Cabinet", "Description"];
-  requiredFields: string[] = ["name", "teacher"];
+export class SubjectFormComponent {
+  public subject: ISubject  = <ISubject>{name: '', teacher: '', cabinet: '', description: ''};
+  public formTitle: string = ADD_SUBJECT_FORM_TITLE;
+  public fieldsTitle: string[] = ADD_SUBJECT_FORM_FILDS_TITLE;
+  public requiredFields: string[] = ADD_SUBJECT_FORM_REQUIRED_FIELDS;
 
-  constructor(private storeService: StoreService, private router: Router) {
+  constructor(
+    private store: Store<IAppState>,
+    private router: Router) {
   }
 
-  ngOnInit() {}
-
-  public AddNewSubject() {
-    this.storeService.addSubjectToStore(this.subject);
+  public AddNewSubject(): void {
+    this.store.dispatch( new AddSubject(this.subject));
     this.router.navigate(['/subjects']);
   }
 

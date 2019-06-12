@@ -1,12 +1,10 @@
 import { TestBed } from '@angular/core/testing';
 
-import { DataPickerService } from './data-picker.service';
+import { GetDataFromStoreSrvice } from './get-data-from-store.service';
 import { StoreRouterConnectingModule } from '@ngrx/router-store';
 import { RouterModule } from '@angular/router';
 import { StoreModule } from '@ngrx/store';
-import { jornalReducer } from '../../../store/reducers/jornal.reducer';
-
-
+import { jornalReducer } from '../../store/reducers/subjects.reducer';
 
 describe('DataPickerService', () => {
   beforeEach(() => TestBed.configureTestingModule({
@@ -16,12 +14,12 @@ describe('DataPickerService', () => {
 
   ],
     providers: [
-       DataPickerService,
+      GetDataFromStoreSrvice,
     ],
   }));
 
   it('should be created', () => {
-    const service: DataPickerService = TestBed.get(DataPickerService);
+    const service: GetDataFromStoreSrvice = TestBed.get(GetDataFromStoreSrvice);
     expect(service).toBeTruthy();
   });
 });

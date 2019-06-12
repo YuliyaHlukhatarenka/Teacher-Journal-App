@@ -2,7 +2,7 @@
   <p class="form-title">{{formTitle | translate}}</p>
   <template #messagecontainer></template>
   <div class="form-container">
-    <div *ngFor="let key of item | toIterableByKey; let i = index" class="form-content">
+    <div *ngFor="let key of itemKeys; let i = index" class="form-content">
       <p *ngIf="fieldsTitle[i]">{{fieldsTitle[i] | translate}}</p>
       <input *ngIf="fieldsTitle[i]" type="text" [id]="key" [(ngModel)]="item[key]" />
     </div>
@@ -10,5 +10,7 @@
       <button type="submit" (click)="onClickAdd()" name="Add">{{ 'buttons.add' | translate }}</button>
     </div>
   </div>
-  <app-default-field *ngIf="!defaultFieldDefined" [defaultValuesNoSet]="defaultValuesNoSet"></app-default-field>
+  <alert *ngIf="!defaultFieldDefined" type="danger">
+    <strong>Error!</strong> Please, define field {{defaultValuesNoSet}} and try again.
+  </alert>
 </div>

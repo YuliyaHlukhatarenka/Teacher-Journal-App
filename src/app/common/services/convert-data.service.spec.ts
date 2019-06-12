@@ -4,7 +4,6 @@ import { ConvertDataService } from './convert-data.service';
 import { DecimalPipe } from '@angular/common';
 
 describe('ConvertDataService', () => {
-  
 beforeEach(async(() => {
   TestBed.configureTestingModule({
     providers: [
@@ -12,7 +11,7 @@ beforeEach(async(() => {
     ]}).compileComponents();
   }));
 
-  it('should be created', () => {
+it('should be created', () => {
     const service: ConvertDataService = TestBed.get(ConvertDataService);
     expect(service).toBeTruthy();
   });

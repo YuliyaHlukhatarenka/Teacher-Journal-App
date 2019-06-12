@@ -1,4 +1,4 @@
-export class Mark {
-    public date: string;
+export  interface IMark {
+     date: string;
+     checked?: boolean;
 }
-

@@ -1,1 +1,2 @@
-export * from './jornal.actions';
+export * from './students.actions';
+export * from './subjects.actions';

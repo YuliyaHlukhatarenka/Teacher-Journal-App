@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Store, select } from '@ngrx/store';
-import { AppState } from '../../../store/state/jornal.state';
+import { IAppState } from '../../../store/state/app.state';
 import { Observable } from 'rxjs';
-
 
 @Component({
   selector: 'app-students-table',
@@ -11,13 +10,12 @@ import { Observable } from 'rxjs';
   styleUrls: ['./students-table.component.scss']
 })
 export class StudentsComponent implements OnInit {
-  public state$: Observable<any>;
-  param = {value: 'world'};
+  public studentsState$: Observable<IAppState>;
 
-  constructor(private router: Router, private store: Store<AppState>) { }
+  constructor(private router: Router, private store: Store<IAppState>) { }
 
-  ngOnInit() {
-    this.state$ = this.store.pipe(select('state'));
+  public ngOnInit(): void {
+    this.studentsState$ = this.store.pipe(select('studentsState'));
   }
 
   public openAddNewStudentPage(): void {

@@ -11,18 +11,18 @@ import { StudentFormComponent } from './components/students/student-form/student
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
-import { DataService } from './common/services/db-service/data.service';
+import { DataService } from './common/services/data.service';
 import { SubjectFormComponent } from './components/subjects/subject-form/subject-form.component';
 import { FormTemplateComponent } from './shared/components/forms/form-template/form-template.component';
 import { FormAddItemComponent } from './common/forms/form-add-item/form-add-item.component';
 import { AlertModule } from 'ngx-bootstrap/alert';
-import { DefaultFieldComponent } from './common/forms/alerts/default-field/default-field.component';
 import { SubjectDetailsComponent } from './components/subjects/subject-details/subject-details.component';
 import { StoreModule } from '@ngrx/store';
-import { jornalReducer } from './store/reducers/jornal.reducer';
+import { studentsReducer } from './store/reducers/students.reducer';
+import { subjectsReducer } from './store/reducers/subjects.reducer';
 import { DecimalPipe } from '@angular/common';
 import { environment } from '../environments/environment';
-export const firebase = environment.firebase;
+export const firebase: Object = environment.firebase;
 import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule, FirestoreSettingsToken } from '@angular/fire/firestore';
 import { ToIterableByKeyPipe } from './common/pipes/to-iterable-by-key/to-iterable-by-key.pipe';
@@ -32,7 +32,7 @@ import { RouterModule } from '@angular/router';
 import { EffectsModule } from '@ngrx/effects';
 import { ActionsEffects } from './store/effects/actions.effects';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
-import { DataPickerService } from './common/services/data-picker/data-picker.service';
+import { GetDataFromStoreSrvice } from './common/services';
 import { DataPickerComponent } from './components/statistics/data-picker/data-picker.component';
 import { AccordionModule } from 'ngx-bootstrap/accordion';
 import { CollapseModule } from 'ngx-bootstrap/collapse';
@@ -53,7 +53,6 @@ import {ReactiveFormsModule} from '@angular/forms';
     SubjectFormComponent,
     FormTemplateComponent,
     FormAddItemComponent,
-    DefaultFieldComponent,
     SubjectDetailsComponent,
     ToIterableByKeyPipe,
     DataPickerComponent,
@@ -63,11 +62,11 @@ import {ReactiveFormsModule} from '@angular/forms';
     BrowserModule,
     ReactiveFormsModule,
     AppRoutingModule,
-    NgxUiLoaderModule, 
+    NgxUiLoaderModule,
     FormsModule,
     HttpClientModule,
     AlertModule.forRoot(),
-    StoreModule.forRoot({ 'state': jornalReducer }),
+    StoreModule.forRoot({ 'studentsState': studentsReducer, 'subjectsState': subjectsReducer }),
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,
     StoreRouterConnectingModule.forRoot(),
@@ -81,7 +80,7 @@ import {ReactiveFormsModule} from '@angular/forms';
     }),
     StoreDevtoolsModule.instrument({
       maxAge: 25,
-    }), 
+    }),
     AccordionModule.forRoot(),
     CollapseModule.forRoot(),
     BsDropdownModule.forRoot(),
@@ -90,7 +89,7 @@ import {ReactiveFormsModule} from '@angular/forms';
   providers: [
     DataService,
     DecimalPipe,
-    DataPickerService,
+    GetDataFromStoreSrvice,
     { provide: FirestoreSettingsToken, useValue: {} }
   ],
   bootstrap: [AppComponent],
@@ -98,6 +97,6 @@ import {ReactiveFormsModule} from '@angular/forms';
 })
 export class AppModule { }
 
-export function HttpLoaderFactory(http: HttpClient) {
+export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
   return new TranslateHttpLoader(http);
 }

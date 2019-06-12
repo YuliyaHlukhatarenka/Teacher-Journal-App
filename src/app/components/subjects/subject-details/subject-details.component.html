@@ -1,15 +1,15 @@
 <div class="container">
   <p class="form-title">{{title | translate}}</p>
-  <div class="add-new-date-button">
-    <button (click)="openAddNewColumnDate()"> + </button>
-  </div>
+  <div> </div>
   <div class="table-container">
+     
     <table>
+        <button class="add-new-date-button" (click)="openAddNewColumnDate()"> + </button>
       <tr>
         <th>{{ 'student.firstname' | translate }}</th>
         <th>{{ 'student.lastname' | translate }}</th>
         <th>{{ 'student.average_mark' | translate }}</th>
-        <th *ngFor="let item of subject.marks; let i = index">
+        <th *ngFor="let item of subj.marks; let i = index">
           <input type="text" [value]="item.date" [(ngModel)]="newDate[item.date]" (blur)="onBlur($event)"
             (focusin)="onFocusInDateTitle($event)">
         </th>
@@ -18,8 +18,8 @@
         (focusout)="onFocusOut($event, student.firstName, student.lastName)">
         <td>{{student.firstName}}</td>
         <td>{{student.lastName}}</td>
-        <td>{{average[student.firstName+' '+student.lastName]}}</td>
-        <td *ngFor="let item of subject.marks; let i = index">
+        <td>{{subj.average[student.firstName+' '+student.lastName]}}</td>
+        <td *ngFor="let item of subj.marks; let i = index">
           <input type="text" *ngIf="marks[item.date]"
             [(ngModel)]="marks[item.date][student.firstName+' '+student.lastName]"> </td>
       </tr>
@@ -27,10 +27,12 @@
   </div>
   <div class="edit-teacher-section">
     <p>{{ 'Teacher:' | translate }}</p>
-    <input class="edit-teacher-input" type="text" [(ngModel)]="subject.teacher">
+    <input class="edit-teacher-input" type="text" [(ngModel)]="subj.teacher">
   </div>
   <div class="form-actions">
     <button type="submit" name="Save" (click)="onSave()">{{ 'buttons.save' | translate }}</button>
   </div>
 </div>
-<app-default-field *ngIf="!allDateDefined" [defaultValuesNoSet]="defaultValuesNoSet"></app-default-field>
+<alert *ngIf="!allDateDefined" type="danger">
+  <strong>Error!</strong> Please, define field {{defaultValuesNoSet}} and try again.
+</alert>

@@ -1,6 +1,6 @@
-<p class="form-title">{{ 'List of subjects:' | translate }}</p>
+<h3 class="form-title">{{ 'List of subjects:' | translate }}</h3>
 <div class="subjects-container">
-  <div *ngFor="let subject of ( state$ | async ).subjects " class="subject-field" (click)="click(subject)">
+  <div *ngFor="let subject of ( subjectState$ | async ).subjects " class="subject-field" (click)="click(subject)">
     <p>{{subject.name | translate}}</p>
   </div>
 </div>

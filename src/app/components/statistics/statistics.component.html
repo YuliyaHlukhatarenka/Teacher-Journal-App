@@ -6,7 +6,7 @@
             <td>
                 <table>
                     <tr *ngFor="let item of subjects[i].studentAndMarks | toIterableByKey; let j = index">
-                        <td>{{item}}</td>
+                        <td>{{item + ' ' + subjects[i].studentAndMarks[item]}}</td>
                     </tr>
                 </table>
             </td>

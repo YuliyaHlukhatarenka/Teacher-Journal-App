@@ -1,31 +1,34 @@
 import { Component, OnInit } from '@angular/core';
-import { DataService } from '../../../common/services/db-service/data.service';
-import { User } from '../../../common/entities/';
+import { IStudent } from '../../../common/entities/';
 import { Router } from '@angular/router';
-import { StoreService } from '../../../common/services/store-service/store.service';
+import { Store, select } from '@ngrx/store';
+import { IAppState } from 'src/app/store/state';
+import { AddStudent } from 'src/app/store/actions';
+import { ADD_STUDENT_FORM_TITLE,
+  ADD_STUDENT_FORM_FILDS_TITLE,
+  ADD_STUDENT_FORM_REQUIRED_FIELDS } from '../../../common/constants';
 @Component({
   selector: 'app-student-form',
   templateUrl: './student-form.component.html',
   styleUrls: ['./student-form.component.scss']
 })
 export class StudentFormComponent implements OnInit {
-  public student: User;
-  public formTitle: string = "Add new student:";
-  public fieldsTitle: string[] = ["* First Name", "* Last Name", "Address", "Comment"];
-  public requiredFields: string[] = ["firstName", "lastName"];
+  public student: IStudent;
+  public formTitle: string = ADD_STUDENT_FORM_TITLE;
+  public fieldsTitle: string[] = ADD_STUDENT_FORM_FILDS_TITLE;
+  public requiredFields: string[] = ADD_STUDENT_FORM_REQUIRED_FIELDS;
 
   constructor(
-    private dataService: DataService,
-    private storeService: StoreService,
+    private store: Store<IAppState>,
     private router: Router) {
   }
 
-  ngOnInit() {
-    this.student = new User('', '', '', '');
+  public ngOnInit(): void {
+    this.student = <IStudent>{firstName: '', lastName: '', address: '', description: ''};
   }
 
   public AddNewStudent(): void {
-    this.storeService.addStudentToStore(this.student);
+    this.store.dispatch(new AddStudent(this.student));
     this.router.navigate(['/students']);
   }
 
