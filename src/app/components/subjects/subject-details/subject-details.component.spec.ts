@@ -5,7 +5,6 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { HttpLoaderFactory } from 'src/app/app.module';
 import { ToIterableByKeyPipe } from '../../../common/pipes/to-iterable-by-key/to-iterable-by-key.pipe';
 import { FormsModule } from '@angular/forms';
-import { DefaultFieldComponent } from '../../../common/forms/form-add-item/default-field/default-field.component';
 import { AlertModule } from 'ngx-bootstrap/alert';
 import { RouterModule } from '@angular/router';
 import { StoreRouterConnectingModule } from '@ngrx/router-store';
@@ -28,7 +27,7 @@ describe('SubjectDetailsComponent', () => {
   let store: Store<IAppState>;
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [SubjectDetailsComponent, FormAddItemComponent, ToIterableByKeyPipe, DefaultFieldComponent],
+      declarations: [SubjectDetailsComponent, FormAddItemComponent, ToIterableByKeyPipe],
       imports: [FormsModule, AlertModule,
         StoreModule.forRoot({ 'state': subjectsReducer }),
         AngularFirestoreModule,

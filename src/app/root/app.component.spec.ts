@@ -7,7 +7,8 @@ import { HttpLoaderFactory } from '../app.module';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule, FirestoreSettingsToken } from '@angular/fire/firestore';
 import { StoreModule } from '@ngrx/store';
-import { jornalReducer } from '../store/reducers';
+import { studentsReducer } from '../store/reducers';
+import { subjectsReducer } from '../store/reducers';
 import { environment } from 'src/environments/environment';
 import { RouterModule } from '@angular/router';
 import { StoreRouterConnectingModule } from '@ngrx/router-store';
@@ -19,7 +20,7 @@ describe('AppComponent', () => {
       imports: [
         HttpClientModule,
         NgxUiLoaderModule,
-        RouterTestingModule, 
+        RouterTestingModule,
            TranslateModule.forRoot({
             loader: {
                 provide: TranslateLoader,
@@ -27,7 +28,7 @@ describe('AppComponent', () => {
                 deps: [HttpClient]
             }
         }),
-        StoreModule.forRoot({ 'state': jornalReducer }),
+        StoreModule.forRoot({ 'studentsState': studentsReducer, 'subjectsState': subjectsReducer }),
         AngularFireModule.initializeApp(environment.firebase),
         AngularFirestoreModule,
         RouterModule.forRoot([]),

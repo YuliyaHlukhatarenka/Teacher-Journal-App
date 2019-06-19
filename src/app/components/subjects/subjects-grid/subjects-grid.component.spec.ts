@@ -7,15 +7,14 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { HttpLoaderFactory } from 'src/app/app.module';
 import { ToIterableByKeyPipe } from '../../../common/pipes/to-iterable-by-key/to-iterable-by-key.pipe';
 import { FormsModule } from '@angular/forms';
-import { DefaultFieldComponent } from '../../../common/forms/form-add-item/default-field/default-field.component';
 import { AlertModule } from 'ngx-bootstrap/alert';
 import { EffectsModule } from '@ngrx/effects';
 import { RouterModule } from '@angular/router';
-import { of  } from 'rxjs';
+import { of, Observable  } from 'rxjs';
 import { SubjectsGridComponent } from './subjects-grid.component';
 import { StoreRouterConnectingModule } from '@ngrx/router-store';
 import { ActionsEffects } from 'src/app/store/effects/actions.effects';
-import { StoreModule } from '@ngrx/store';
+import { StoreModule, Store } from '@ngrx/store';
 import { subjectsReducer } from '../../../store/reducers/subjects.reducer';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AngularFireModule } from '@angular/fire';
@@ -27,12 +26,13 @@ describe('SubjectsGridComponent', () => {
   let fixture: ComponentFixture<SubjectsGridComponent>;
   let de: DebugElement[];
   let el: HTMLElement;
+  let store: Store<IAppState>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ SubjectsGridComponent, FormAddItemComponent, ToIterableByKeyPipe, DefaultFieldComponent ],
+      declarations: [ SubjectsGridComponent, FormAddItemComponent, ToIterableByKeyPipe ],
       imports:  [ FormsModule, AlertModule,
-        StoreModule.forRoot({ 'state': subjectsReducer }),
+        StoreModule.forRoot({ 'subjectsState': subjectsReducer }),
         AngularFirestoreModule,
         HttpClientModule,
         RouterModule.forRoot([]),
@@ -51,21 +51,14 @@ describe('SubjectsGridComponent', () => {
   }));
 
   beforeEach(() => {
+    const fakeSubject: Observable<{
+      name: string; }> = of({name: 'Literature'});
+    store = TestBed.get(store);
+    spyOn(store, 'select').and.returnValue(fakeSubject);
+    fixture.detectChanges();
     fixture = TestBed.createComponent(SubjectsGridComponent);
     component = fixture.componentInstance;
-    de = fixture.debugElement.queryAll(By.css('p'));
     fixture.detectChanges();
   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
-
-  // it('should display list  of subjects', () => {
-  //   component.state$ = of(<AppState>{students: [], subjects: [{name: 'Literature'}]});
-  //   fixture.detectChanges();
-  //   de = fixture.debugElement.queryAll(By.css('p'));
-  //   el = de[0].nativeElement;
-  //   expect(el.textContent).toEqual('Literature');
-  // });
 });

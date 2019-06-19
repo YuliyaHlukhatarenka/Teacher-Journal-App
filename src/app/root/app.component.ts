@@ -43,6 +43,7 @@ export class AppComponent implements OnInit {
       setTimeout(() => {
         this.ngxService.stop();
         this.isDataloaded = true;
+        console.log(this.result.students, this.result.subjects);
       },         1000);
     }
   }

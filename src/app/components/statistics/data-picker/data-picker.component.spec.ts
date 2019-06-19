@@ -5,8 +5,7 @@ import { DataPickerComponent } from './data-picker.component';
 import { StoreRouterConnectingModule } from '@ngrx/router-store';
 import { RouterModule } from '@angular/router';
 import { StoreModule } from '@ngrx/store';
-import { jornalReducer } from '../../../store/reducers/subjects.reducer';
-
+import { subjectsReducer } from '../../../store/reducers/subjects.reducer';
 
 describe('DataPickerComponent', () => {
   let component: DataPickerComponent;
@@ -19,7 +18,7 @@ describe('DataPickerComponent', () => {
         FormsModule,
         RouterModule.forRoot([]),
         StoreRouterConnectingModule.forRoot(),
-        StoreModule.forRoot({ 'state': jornalReducer }),
+        StoreModule.forRoot({ 'subjectsState': subjectsReducer }),
   ],
     })
     .compileComponents();

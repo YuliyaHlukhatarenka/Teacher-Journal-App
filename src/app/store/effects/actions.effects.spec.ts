@@ -3,13 +3,14 @@ import { Observable } from 'rxjs';
 import { EffectsModule } from '@ngrx/effects';
 import { ActionsEffects } from '../effects/actions.effects';
 import { Actions } from '@ngrx/effects';
-import { DataPickerService } from 'src/app/common/services/get-data-from-store.service';
+import { GetDataFromStoreSrvice } from 'src/app/common/services/get-data-from-store.service';
 import { StoreModule } from '@ngrx/store';
 import { AngularFirestoreModule, FirestoreSettingsToken } from '@angular/fire/firestore';
 import { StoreRouterConnectingModule } from '@ngrx/router-store';
 import { AngularFireModule } from '@angular/fire';
 import { environment } from 'src/environments/environment';
-import { jornalReducer } from '../reducers/subjects.reducer';
+import { subjectsReducer } from '../../store/reducers/subjects.reducer';
+import { studentsReducer } from '../../store/reducers/students.reducer';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 import { Action } from 'rxjs/internal/scheduler/Action';
@@ -20,7 +21,7 @@ describe('ActionsEffects', () => {
     TestBed.configureTestingModule({
       imports: [
         EffectsModule.forRoot([ActionsEffects]),
-        StoreModule.forRoot({ 'state': jornalReducer }),
+        StoreModule.forRoot({ 'studentsState': studentsReducer, 'subjectsState': subjectsReducer }),
         AngularFireModule.initializeApp(environment.firebase),
         AngularFirestoreModule,
         StoreRouterConnectingModule.forRoot(),
@@ -28,7 +29,7 @@ describe('ActionsEffects', () => {
         RouterModule.forRoot([]),
       ],
       providers: [
-        DataPickerService,
+        GetDataFromStoreSrvice,
         { provide: FirestoreSettingsToken, useValue: {} }
       ],
     });

@@ -28,7 +28,6 @@ import { AngularFirestoreModule, FirestoreSettingsToken } from '@angular/fire/fi
 import { ToIterableByKeyPipe } from './common/pipes/to-iterable-by-key/to-iterable-by-key.pipe';
 import { StoreRouterConnectingModule } from '@ngrx/router-store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
-import { RouterModule } from '@angular/router';
 import { EffectsModule } from '@ngrx/effects';
 import { ActionsEffects } from './store/effects/actions.effects';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';

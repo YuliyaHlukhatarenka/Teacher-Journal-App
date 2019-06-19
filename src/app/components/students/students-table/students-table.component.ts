@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { Store, select } from '@ngrx/store';
 import { IAppState } from '../../../store/state/app.state';
 import { Observable } from 'rxjs';
+import { IStudentsState } from 'src/app/store/state';
 
 @Component({
   selector: 'app-students-table',
@@ -10,12 +11,12 @@ import { Observable } from 'rxjs';
   styleUrls: ['./students-table.component.scss']
 })
 export class StudentsComponent implements OnInit {
-  public studentsState$: Observable<IAppState>;
+  public studentsState$: Observable<IStudentsState>;
 
-  constructor(private router: Router, private store: Store<IAppState>) { }
+  constructor(private router: Router, private store: Store<IStudentsState>) { }
 
   public ngOnInit(): void {
-    this.studentsState$ = this.store.pipe(select('studentsState'));
+    this.studentsState$ = this.store.select('studentsState');
   }
 
   public openAddNewStudentPage(): void {

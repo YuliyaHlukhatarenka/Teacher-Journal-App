@@ -6,12 +6,12 @@ import { HttpClient } from '@angular/common/http';
 import { HttpLoaderFactory } from 'src/app/app.module';
 import { ToIterableByKeyPipe } from '../../common/pipes/to-iterable-by-key/to-iterable-by-key.pipe';
 import { FormsModule } from '@angular/forms';
-import { DefaultFieldComponent } from '../../common/forms/form-add-item/default-field/default-field.component';
 import { AlertModule } from 'ngx-bootstrap/alert';
 import { StoreRouterConnectingModule } from '@ngrx/router-store';
 import { RouterModule } from '@angular/router';
 import { StoreModule } from '@ngrx/store';
-import { jornalReducer } from '../../store/reducers/subjects.reducer';
+import { studentsReducer } from '../../store/reducers';
+import { subjectsReducer } from '../../store/reducers';
 
 import { StatisticsComponent } from './statistics.component';
 
@@ -21,7 +21,7 @@ describe('StatisticsComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [StatisticsComponent, DataPickerComponent, FormAddItemComponent, ToIterableByKeyPipe, DefaultFieldComponent],
+      declarations: [StatisticsComponent, DataPickerComponent, FormAddItemComponent, ToIterableByKeyPipe],
       imports: [FormsModule, AlertModule, TranslateModule.forChild({
         loader: {
           provide: TranslateLoader,
@@ -31,7 +31,8 @@ describe('StatisticsComponent', () => {
       }),
         RouterModule.forRoot([]),
         StoreRouterConnectingModule.forRoot(),
-        StoreModule.forRoot({ 'state': jornalReducer }),],
+        StoreModule.forRoot({ 'studentsState': studentsReducer, 'subjectsState': subjectsReducer }),
+      ],
     })
       .compileComponents();
   }));

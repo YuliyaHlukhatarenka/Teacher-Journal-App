@@ -4,13 +4,14 @@ import { GetDataFromStoreSrvice } from './get-data-from-store.service';
 import { StoreRouterConnectingModule } from '@ngrx/router-store';
 import { RouterModule } from '@angular/router';
 import { StoreModule } from '@ngrx/store';
-import { jornalReducer } from '../../store/reducers/subjects.reducer';
+import { subjectsReducer } from '../../store/reducers/subjects.reducer';
+import { studentsReducer } from '../../store/reducers/students.reducer';
 
 describe('DataPickerService', () => {
   beforeEach(() => TestBed.configureTestingModule({
     imports: [RouterModule.forRoot([]),
              StoreRouterConnectingModule.forRoot(),
-             StoreModule.forRoot({ 'state': jornalReducer }),
+             StoreModule.forRoot({ 'studentsState': studentsReducer, 'subjectsState': subjectsReducer }),
 
   ],
     providers: [
